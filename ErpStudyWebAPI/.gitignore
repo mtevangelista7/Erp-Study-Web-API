@@ -1,0 +1,85 @@
+# Arquivos temporários gerados pelo Visual Studio
+.vs/
+
+# Arquivos de compilação
+bin/
+obj/
+
+# Arquivos de log
+*.log
+
+# Arquivos de configuração de usuário
+*.user
+
+# Cache de ferramentas de compilação
+*.vscode/
+*.suo
+*.userprefs
+*.sln.docstates
+
+# Cache de Ferramentas
+_ReSharper*/
+*.resharper
+*.suo
+*.user
+*.resharper.user
+*.sln.docstates
+
+# Cache de Testes
+TestResults/
+
+# Arquivos de depuração
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+
+# Ferramentas de compilação
+_ReSharper*/
+*.resharper
+*.suo
+*.user
+*.resharper.user
+*.sln.docstates
+
+# Arquivos de configuração de NuGet
+packages/
+
+# Arquivos de compilação do MSBuild
+*.cache
+*.ilk
+*.meta
+*.pdb
+*.pgc
+*.pgd
+*.rsp
+*.sbr
+*.tlb
+*.tli
+*.tlh
+*.tmp
+*.tmp_proj
+*.log
+*.vspscc
+*.vssscc
+.builds
+*.pidb
+*.log
+*.log.xml
+*.csproj.user
+*.dotCover
+*.teamcity
+*.dotsettings.user
+
+# Outros arquivos e pastas gerais que podem ser ignorados
+Thumbs.db
+*.tmp
+*.tmp_proj

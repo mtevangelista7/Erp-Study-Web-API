@@ -1,0 +1,39 @@
+version: '3.4'
+
+networks:
+  app-network:
+    driver: bridge
+
+services:
+  appdb:
+    container_name: app-db
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports:
+      - 1433:1433
+    environment:
+      - SA_PASSWORD=password@123
+      - ACCEPT_EULA=Y
+    networks:
+      - app-network
+    volumes:
+      - appdb-data:/var/opt/mssql
+
+  erpstudywebapi:
+    image: ${DOCKER_REGISTRY-}erpstudywebapi
+    build:
+      context: .
+      dockerfile: ErpStudyWebAPI/Dockerfile
+    ports:
+    - 8001:80
+    depends_on:
+      - appdb
+    environment:
+      - DB_HOST=app-db
+      - DB_NAME=ErpStudyApp
+      - DB_USER=sa
+      - DB_SA_PASSWORD=password@123
+    networks:
+      - app-network
+
+volumes:
+  appdb-data:
