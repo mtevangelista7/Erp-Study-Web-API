@@ -2,6 +2,7 @@ using Moq;
 using ErpStudyWebAPI.Controllers;
 using ErpStudyWebAPI.Models;
 using ErpStudyWebAPI.Services.CategoriaServices;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -33,5 +34,41 @@ public class CategoriaControllerUnitTest
         // Assert
         OkObjectResult okResult = Assert.IsType<OkObjectResult>(result);
         Assert.Equal(categoria, okResult.Value);
+    }
+
+    [Fact]
+    public async Task AdicionarCategoria_Returns_Created()
+    {
+        // Arrange
+        var categoriaServiceMock = new Mock<ICategoriaService>();
+        var loggerMock = new Mock<ILogger<CategoriaController>>();
+        var controller = new CategoriaController(categoriaServiceMock.Object, loggerMock.Object);
+
+        var categoria = new Categoria { /* Preencha os detalhes da categoria aqui */ };
+
+        // Act
+        var result = await controller.AdicionarCategoria(categoria) as StatusCodeResult;
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.Equal(StatusCodes.Status201Created, result.StatusCode);
+        categoriaServiceMock.Verify(service => service.AdicionarCategoria(categoria), Times.Once);
+    }
+    
+    [Fact]
+    public async Task AdicionarCategoria_Returns_BadRequest_When_Categoria_Is_Null()
+    {
+        // Arrange
+        var categoriaServiceMock = new Mock<ICategoriaService>();
+        var loggerMock = new Mock<ILogger<CategoriaController>>();
+        var controller = new CategoriaController(categoriaServiceMock.Object, loggerMock.Object);
+
+        // Act
+        var result = await controller.AdicionarCategoria(null) as StatusCodeResult;
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.Equal(StatusCodes.Status400BadRequest, result.StatusCode);
+        categoriaServiceMock.Verify(service => service.AdicionarCategoria(It.IsAny<Categoria>()), Times.Never);
     }
 }
