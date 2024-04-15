@@ -1,27 +1,44 @@
 ﻿using ErpStudyWebAPI.Models;
 using ErpStudyWebAPI.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace ErpStudyWebAPI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CategoriaController : ControllerBase
     {
-
+        public ClaimsPrincipal ClaimsPrincipalUsuario { get; }
+        
         private readonly ILogger<CategoriaController> _logger;
-
-        public CategoriaController(ILogger<CategoriaController> logger)
+        private readonly ICategoriaService _categoriaService;
+        
+        public CategoriaController(ILogger<CategoriaController> logger, ICategoriaService categoriaService)
         {
             _logger = logger;
+            _categoriaService  = categoriaService;
         }
 
+        /// <summary>
+        /// Adicina um nova categoria
+        /// </summary>
+        /// <remarks>teste</remarks>
+        /// <response code="201">Categoria criada com sucesso!</response>
+        /// <response code="500">Não foi possível criar a categoria no momento, tente novamente mais tarde!</response>
+        /// <response code="400">O objeto categoria não foi enviado corretamente, verifique e tente novamente!</response>
         [HttpPost("AdicionarCategoria")]
+        [ProducesResponseType(typeof(Categoria), 201)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(500)]
         public async Task<IActionResult> AdicionarCategoria([FromBody] Categoria categoria)
         {
             try
@@ -31,9 +48,7 @@ namespace ErpStudyWebAPI.Controllers
                     return StatusCode(StatusCodes.Status400BadRequest);
                 }
 
-                CategoriaService categoriaService = new CategoriaService();
-
-                await categoriaService.AdicionarCategoria(categoria);
+                await _categoriaService.AdicionarCategoria(categoria);
 
                 return StatusCode(StatusCodes.Status201Created);
             }
@@ -44,14 +59,24 @@ namespace ErpStudyWebAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Retorna uma categoria pelo ID
+        /// </summary>
+        /// <remarks>teste</remarks>
+        /// <response code="200">Categoria retornada com sucesso</response>
+        /// <response code="500">Não foi possível retonar a categoria no momento, tente novamente mais tarde!</response>
+        /// <response code="400">O objeto id não foi enviado corretamente, verifique e tente novamente!</response>
         [HttpPost("RetornaCategoria")]
         public async Task<IActionResult> RetornaCategoria([FromBody] Guid guidID)
         {
             try
             {
-                CategoriaService categoriaService = new CategoriaService();
+                //Guid usuarioId = Guid.Parse(ClaimsPrincipalUsuario.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
+                
+                if (guidID == Guid.Empty)
+                    return StatusCode(StatusCodes.Status400BadRequest);
 
-                return Ok(await categoriaService.RetornaCategoria(guidID));
+                return Ok(await _categoriaService.RetornaCategoria(guidID));
             }
             catch (Exception ex)
             {
@@ -60,14 +85,18 @@ namespace ErpStudyWebAPI.Controllers
             }
         }
 
-        [HttpGet("RetornaCategorias")]
+        /// <summary>
+        /// Retorna uma lista com todas as categorias
+        /// </summary>
+        /// <remarks>teste</remarks>
+        /// <response code="200">Categorias retornadas com sucesso</response>
+        /// <response code="500">Não foi possível retonar a categoria no momento, tente novamente mais tarde!</response>
+        [HttpGet("RetornaCategorias")] 
         public async Task<IActionResult> RetornaCategorias()
         {
             try
             {
-                CategoriaService categoriaService = new CategoriaService();
-
-                return Ok(await categoriaService.RetornaCategorias());
+                return Ok(await _categoriaService.RetornaCategorias());
             }
             catch (Exception ex)
             {
@@ -76,6 +105,12 @@ namespace ErpStudyWebAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Retorna uma categoria pelo ID
+        /// </summary>
+        /// <remarks>teste</remarks>
+        /// <response code="200">Categoria retornada atualizada com sucesso!</response>
+        /// <response code="500">Não foi possível atualizar a categoria no momento, tente novamente mais tarde!</response>
         [HttpPut("AtualizaCategoria")]
         public async Task<IActionResult> AtualizaCategoria([FromBody] Categoria categoria)
         {
@@ -86,9 +121,7 @@ namespace ErpStudyWebAPI.Controllers
                     return StatusCode(StatusCodes.Status400BadRequest);
                 }
 
-                CategoriaService categoriaService = new CategoriaService();
-
-                await categoriaService.AtualizarCategoria(categoria);
+                await _categoriaService.AtualizarCategoria(categoria);
 
                 return Ok();
             }
@@ -99,6 +132,12 @@ namespace ErpStudyWebAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Retorna uma categoria pelo ID
+        /// </summary>
+        /// <remarks>teste</remarks>
+        /// <response code="200">Categoria retornada atualizada com sucesso!</response>
+        /// <response code="500">Não foi possível atualizar a categoria no momento, tente novamente mais tarde!</response>
         [HttpDelete("DeletaCategoria")]
         public async Task<IActionResult> DeletaCategoria([FromBody] Guid guidID)
         {
@@ -109,9 +148,7 @@ namespace ErpStudyWebAPI.Controllers
                     return StatusCode(StatusCodes.Status400BadRequest);
                 }
 
-                CategoriaService categoriaService = new CategoriaService();
-
-                await categoriaService.DeletarCategoria(guidID);
+                await _categoriaService.DeletarCategoria(guidID);
 
                 return Ok();
             }

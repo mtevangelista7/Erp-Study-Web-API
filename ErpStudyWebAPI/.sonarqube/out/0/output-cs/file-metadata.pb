@@ -1,0 +1,17 @@
+∞
+§C:\Users\p-mesantos\Downloads\Erp-Study-Web-API-main\Erp-Study-Web-API-main\ErpStudyWebAPI\obj\Debug\netcoreapp3.1\ErpStudyWebAPI.MvcApplicationPartsAssemblyInfo.csutf-8ù
+ëC:\Users\p-mesantos\Downloads\Erp-Study-Web-API-main\Erp-Study-Web-API-main\ErpStudyWebAPI\obj\Debug\netcoreapp3.1\ErpStudyWebAPI.AssemblyInfo.csutf-8≠
+°C:\Users\p-mesantos\Downloads\Erp-Study-Web-API-main\Erp-Study-Web-API-main\ErpStudyWebAPI\obj\Debug\netcoreapp3.1\.NETCoreApp,Version=v3.1.AssemblyAttributes.csutf-8u
+lC:\Users\p-mesantos\Downloads\Erp-Study-Web-API-main\Erp-Study-Web-API-main\ErpStudyWebAPI\Utilities\Util.csutf-8n
+eC:\Users\p-mesantos\Downloads\Erp-Study-Web-API-main\Erp-Study-Web-API-main\ErpStudyWebAPI\Startup.csutf-8~
+uC:\Users\p-mesantos\Downloads\Erp-Study-Web-API-main\Erp-Study-Web-API-main\ErpStudyWebAPI\Services\ProdutoService.csutf-8Ä
+wC:\Users\p-mesantos\Downloads\Erp-Study-Web-API-main\Erp-Study-Web-API-main\ErpStudyWebAPI\Services\CategoriaService.csutf-8É
+zC:\Users\p-mesantos\Downloads\Erp-Study-Web-API-main\Erp-Study-Web-API-main\ErpStudyWebAPI\Repository\ProdutoRepository.csutf-8Ö
+|C:\Users\p-mesantos\Downloads\Erp-Study-Web-API-main\Erp-Study-Web-API-main\ErpStudyWebAPI\Repository\CategoriaRepository.csutf-8n
+eC:\Users\p-mesantos\Downloads\Erp-Study-Web-API-main\Erp-Study-Web-API-main\ErpStudyWebAPI\Program.csutf-8u
+lC:\Users\p-mesantos\Downloads\Erp-Study-Web-API-main\Erp-Study-Web-API-main\ErpStudyWebAPI\Models\Produto.csutf-8{
+rC:\Users\p-mesantos\Downloads\Erp-Study-Web-API-main\Erp-Study-Web-API-main\ErpStudyWebAPI\Models\Enums\Unidade.csutf-8|
+sC:\Users\p-mesantos\Downloads\Erp-Study-Web-API-main\Erp-Study-Web-API-main\ErpStudyWebAPI\Models\Enums\Condicao.csutf-8w
+nC:\Users\p-mesantos\Downloads\Erp-Study-Web-API-main\Erp-Study-Web-API-main\ErpStudyWebAPI\Models\Categoria.csutf-8Ñ
+{C:\Users\p-mesantos\Downloads\Erp-Study-Web-API-main\Erp-Study-Web-API-main\ErpStudyWebAPI\Controllers\ProdutoController.csutf-8Ü
+}C:\Users\p-mesantos\Downloads\Erp-Study-Web-API-main\Erp-Study-Web-API-main\ErpStudyWebAPI\Controllers\CategoriaController.csutf-8
