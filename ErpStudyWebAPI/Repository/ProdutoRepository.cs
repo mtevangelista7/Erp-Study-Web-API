@@ -21,6 +21,7 @@ namespace ErpStudyWebAPI.Repository
             StringBuilder stringBuilder = new StringBuilder();
 
             using SqlConnection connection = new SqlConnection(_connectionString);
+            
             connection.Open();
 
             stringBuilder.Append(" INSERT INTO Produto ");
