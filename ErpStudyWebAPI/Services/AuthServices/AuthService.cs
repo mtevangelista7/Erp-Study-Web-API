@@ -1,5 +1,5 @@
 using ErpStudyWebAPI.Models;
-using ErpStudyWebAPI.Repository;
+using ErpStudyWebAPI.Repository.UsuarioRepo;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -11,7 +11,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ErpStudyWebAPI.Helpers
+namespace ErpStudyWebAPI.Services.AuthServices
 {
     public class AuthService : IAuthService
     {

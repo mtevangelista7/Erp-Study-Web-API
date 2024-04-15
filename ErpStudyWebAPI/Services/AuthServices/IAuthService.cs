@@ -2,7 +2,7 @@ using ErpStudyWebAPI.Models;
 using System;
 using System.Threading.Tasks;
 
-namespace ErpStudyWebAPI.Helpers
+namespace ErpStudyWebAPI.Services.AuthServices
 {
     public interface IAuthService
     {

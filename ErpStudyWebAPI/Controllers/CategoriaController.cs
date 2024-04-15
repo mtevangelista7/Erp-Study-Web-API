@@ -1,5 +1,6 @@
 ﻿using ErpStudyWebAPI.Models;
 using ErpStudyWebAPI.Services;
+using ErpStudyWebAPI.Services.CategoriaServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

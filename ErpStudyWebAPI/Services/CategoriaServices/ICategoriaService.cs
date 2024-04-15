@@ -3,8 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ErpStudyWebAPI.Services {
-    public interface ICategoriaService {
+namespace ErpStudyWebAPI.Services.CategoriaServices
+{
+    public interface ICategoriaService
+    {
         public Task AdicionarCategoria(Categoria categoria);
         public Task<Categoria> RetornaCategoria(Guid guidId);
         public Task<List<Categoria>> RetornaCategorias();

@@ -1,3 +1,9 @@
+using ErpStudyWebAPI.Repository;
+using ErpStudyWebAPI.Repository.CategoriaRepo;
+using ErpStudyWebAPI.Repository.UsuarioRepo;
+using ErpStudyWebAPI.Services;
+using ErpStudyWebAPI.Services.CategoriaServices;
+using ErpStudyWebAPI.Services.ProdutoServices;
 using ErpStudyWebAPI.Utilities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -58,6 +64,16 @@ namespace ErpStudyWebAPI
                     ValidateAudience = false
                 };
             });
+
+            // Repository
+            services.AddScoped<ICategoriaRepository>(provider => new CategoriaRepository(Util.StringConexao));
+            services.AddScoped<ICategoriaRepository, CategoriaRepository>();
+            services.AddScoped<IUsuarioRepository>(provider => new UsuarioRepository(Util.StringConexao));
+            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+            
+            // Services
+            services.AddScoped<ICategoriaService, CategoriaService>();
+            services.AddScoped<IProdutoService, ProdutoService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
