@@ -42,9 +42,9 @@ public class CategoriaControllerUnitTest
         // Arrange
         var categoriaServiceMock = new Mock<ICategoriaService>();
         var loggerMock = new Mock<ILogger<CategoriaController>>();
-        var controller = new CategoriaController(categoriaServiceMock.Object, loggerMock.Object);
+        var controller = new CategoriaController(loggerMock.Object, categoriaServiceMock.Object);
 
-        var categoria = new Categoria { /* Preencha os detalhes da categoria aqui */ };
+        var categoria = new Categoria {Nome = "Apagar"};
 
         // Act
         var result = await controller.AdicionarCategoria(categoria) as StatusCodeResult;
@@ -61,7 +61,7 @@ public class CategoriaControllerUnitTest
         // Arrange
         var categoriaServiceMock = new Mock<ICategoriaService>();
         var loggerMock = new Mock<ILogger<CategoriaController>>();
-        var controller = new CategoriaController(categoriaServiceMock.Object, loggerMock.Object);
+        var controller = new CategoriaController(loggerMock.Object, categoriaServiceMock.Object);
 
         // Act
         var result = await controller.AdicionarCategoria(null) as StatusCodeResult;

@@ -1,4 +1,5 @@
 ﻿using ErpStudyWebAPI.Models;
+using ErpStudyWebAPI.Utilities;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
@@ -9,12 +10,7 @@ namespace ErpStudyWebAPI.Repository.CategoriaRepo
 {
     public class CategoriaRepository : ICategoriaRepository
     {
-        private readonly string _connectionString;
-
-        public CategoriaRepository(string connectionString)
-        {
-            _connectionString = connectionString;
-        }
+        private readonly string _connectionString = Util.StringConexao;
 
         public async Task InsereCategoria(Categoria categoria)
         {

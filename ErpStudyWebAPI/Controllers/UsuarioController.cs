@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 
 namespace ErpStudyWebAPI.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UsuarioController : ControllerBase

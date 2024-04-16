@@ -1,5 +1,7 @@
 ﻿using ErpStudyWebAPI.Models;
 using ErpStudyWebAPI.Models.Enums;
+using ErpStudyWebAPI.Repository.ProdutoRepo;
+using ErpStudyWebAPI.Utilities;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
@@ -8,14 +10,9 @@ using System.Threading.Tasks;
 
 namespace ErpStudyWebAPI.Repository
 {
-    public class ProdutoRepository
+    public class ProdutoRepository : IProdutoRepository
     {
-        private readonly string _connectionString;
-
-        public ProdutoRepository(string connectionString)
-        {
-            _connectionString = connectionString;
-        }
+        private readonly string _connectionString = Util.StringConexao;
 
         public async Task InsereProduto(Produto produto)
         {

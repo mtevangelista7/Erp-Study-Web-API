@@ -1,4 +1,5 @@
 ﻿using ErpStudyWebAPI.Models;
+using ErpStudyWebAPI.Utilities;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Text;
@@ -8,12 +9,7 @@ namespace ErpStudyWebAPI.Repository.UsuarioRepo
 {
     public class UsuarioRepository : IUsuarioRepository
     {
-        private readonly string _connectionString;
-
-        public UsuarioRepository(string connectionString)
-        {
-            _connectionString = connectionString;
-        }
+        private readonly string _connectionString = Util.StringConexao;
         
         public async Task<Guid> InsereUsuario(Usuario usuario)
         {

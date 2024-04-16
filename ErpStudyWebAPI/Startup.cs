@@ -1,7 +1,9 @@
 using ErpStudyWebAPI.Repository;
 using ErpStudyWebAPI.Repository.CategoriaRepo;
+using ErpStudyWebAPI.Repository.ProdutoRepo;
 using ErpStudyWebAPI.Repository.UsuarioRepo;
 using ErpStudyWebAPI.Services;
+using ErpStudyWebAPI.Services.AuthServices;
 using ErpStudyWebAPI.Services.CategoriaServices;
 using ErpStudyWebAPI.Services.ProdutoServices;
 using ErpStudyWebAPI.Utilities;
@@ -15,6 +17,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -48,8 +51,32 @@ namespace ErpStudyWebAPI
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "ErpStudyWebAPI", Version = "v1" });
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    In = ParameterLocation.Header,
+                    Description = "Please enter a valid token",
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.Http,
+                    BearerFormat = "JWT",
+                    Scheme = "Bearer"
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type=ReferenceType.SecurityScheme,
+                    Id="Bearer"
+                }
+            },
+            new string[]{}
+        }
+    });
 
-                string filePath = Path.Combine(System.AppContext.BaseDirectory, "MyApi.xml");
+                string directory = AppDomain.CurrentDomain.BaseDirectory;
+                string filePath = Path.Combine(directory, "ErpStudyWebAPI.xml");
                 c.IncludeXmlComments(filePath);
             });
 
@@ -65,15 +92,16 @@ namespace ErpStudyWebAPI
                 };
             });
 
+
             // Repository
-            services.AddScoped<ICategoriaRepository>(provider => new CategoriaRepository(Util.StringConexao));
             services.AddScoped<ICategoriaRepository, CategoriaRepository>();
-            services.AddScoped<IUsuarioRepository>(provider => new UsuarioRepository(Util.StringConexao));
+            services.AddScoped<IProdutoRepository, ProdutoRepository>();
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
-            
+
             // Services
             services.AddScoped<ICategoriaService, CategoriaService>();
             services.AddScoped<IProdutoService, ProdutoService>();
+            services.AddScoped<IAuthService, AuthService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -5,6 +5,8 @@
     <UserSecretsId>0c2cfd3a-667b-4f20-a8be-d6c9caf84791</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <DocumentationFile>bin\ErpStudyWebAPI.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
