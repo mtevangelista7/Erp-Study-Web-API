@@ -11,6 +11,6 @@ namespace ErpStudyWebAPI.Services.CategoriaServices
         public Task<Categoria> RetornaCategoria(Guid guidId);
         public Task<List<Categoria>> RetornaCategorias();
         public Task AtualizarCategoria(Categoria categoria);
-        public Task DeletarCategoria(Guid guidId);
+        public Task<Guid> DeletarCategoria(Guid guidId);
     }
 }

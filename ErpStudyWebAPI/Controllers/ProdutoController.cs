@@ -1,6 +1,7 @@
 ﻿using ErpStudyWebAPI.Models;
 using ErpStudyWebAPI.Services;
 using ErpStudyWebAPI.Services.ProdutoServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace ErpStudyWebAPI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProdutoController : ControllerBase
@@ -22,17 +24,24 @@ namespace ErpStudyWebAPI.Controllers
             _produtoService = produtoService;
         }
 
+        /// <summary>
+        /// Retorna uma lista com todos os produtos
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        public async Task RetornaProdutos()
+        public async Task<IActionResult> RetornaProdutos()
         {
             try
             {
+                return Ok(await _produtoService.RetornarProdutos());
             }
-            catch (Exception err)
+            catch (Exception ex)
             {
+                _logger.LogError(ex, "Erro ao salvar categoria");
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
-        
+
         /// <summary>
         /// Adicina um novo produto
         /// </summary>
@@ -45,18 +54,19 @@ namespace ErpStudyWebAPI.Controllers
         {
             try
             {
-                if (produto == null)
+                if (produto is null)
                 {
                     return BadRequest();
                 }
-                
+
                 await _produtoService.AdicionarProduto(produto);
 
                 return StatusCode(StatusCodes.Status201Created);
             }
-            catch (Exception err)
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                _logger.LogError(ex, "Erro ao salvar categoria");
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
     }

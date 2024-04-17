@@ -1,5 +1,6 @@
 ﻿using ErpStudyWebAPI.Models;
 using ErpStudyWebAPI.Repository.ProdutoRepo;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ErpStudyWebAPI.Services.ProdutoServices
@@ -13,11 +14,22 @@ namespace ErpStudyWebAPI.Services.ProdutoServices
             _produtoRepository = produtoRepository;
         }
         
+        /// <summary>
+        /// Adiciona um novo produto
+        /// </summary>
+        /// <param name="produto"></param>
         public async Task AdicionarProduto(Produto produto)
         {
-            // Chama o repositório para adicionar o produto
-            //ProdutoRepository produtoRepository = new ProdutoRepository(Util.StringConexao);
             await _produtoRepository.InsereProduto(produto);
+        }
+
+        /// <summary>
+        /// Retonar todos os produtos
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<Produto>> RetornarProdutos()
+        {
+            return await _produtoRepository.RetornaTodosProdutos();
         }
     }
 }

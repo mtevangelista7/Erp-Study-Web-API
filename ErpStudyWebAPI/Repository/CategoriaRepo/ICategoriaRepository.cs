@@ -11,6 +11,6 @@ namespace ErpStudyWebAPI.Repository.CategoriaRepo
         Task AtualizaCategoria(Categoria categoria);
         Task<Categoria> RetornaCategoria(Guid guidId);
         Task<List<Categoria>> RetornaCategorias();
-        Task DeletaCategoria(Guid guidId);
+        Task<Guid> DeletaCategoria(Guid guidId);
     }
 }

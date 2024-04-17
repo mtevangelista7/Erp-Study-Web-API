@@ -19,8 +19,6 @@ namespace ErpStudyWebAPI.Controllers
     [ApiController]
     public class CategoriaController : ControllerBase
     {
-        public ClaimsPrincipal ClaimsPrincipalUsuario { get; }
-        
         private readonly ILogger<CategoriaController> _logger;
         private readonly ICategoriaService _categoriaService;
         
@@ -45,7 +43,7 @@ namespace ErpStudyWebAPI.Controllers
         {
             try
             {
-                if (categoria == null)
+                if (categoria is null)
                 {
                     return StatusCode(StatusCodes.Status400BadRequest);
                 }
@@ -69,16 +67,16 @@ namespace ErpStudyWebAPI.Controllers
         /// <response code="500">Não foi possível retonar a categoria no momento, tente novamente mais tarde!</response>
         /// <response code="400">O objeto id não foi enviado corretamente, verifique e tente novamente!</response>
         [HttpPost("RetornaCategoria")]
-        public async Task<IActionResult> RetornaCategoria([FromBody] Guid guidID)
+        public async Task<IActionResult> RetornaCategoria([FromBody] Guid categoriaSelecionadaguidID)
         {
             try
             {
                 //Guid usuarioId = Guid.Parse(ClaimsPrincipalUsuario.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
                 
-                if (guidID == Guid.Empty)
+                if (categoriaSelecionadaguidID == Guid.Empty)
                     return StatusCode(StatusCodes.Status400BadRequest);
 
-                return Ok(await _categoriaService.RetornaCategoria(guidID));
+                return Ok(await _categoriaService.RetornaCategoria(categoriaSelecionadaguidID));
             }
             catch (Exception ex)
             {
@@ -114,16 +112,16 @@ namespace ErpStudyWebAPI.Controllers
         /// <response code="200">Categoria retornada atualizada com sucesso!</response>
         /// <response code="500">Não foi possível atualizar a categoria no momento, tente novamente mais tarde!</response>
         [HttpPut("AtualizaCategoria")]
-        public async Task<IActionResult> AtualizaCategoria([FromBody] Categoria categoria)
+        public async Task<IActionResult> AtualizaCategoria([FromBody] Categoria categoriaSelecionada)
         {
             try
             {
-                if (categoria == null)
+                if (categoriaSelecionada is null)
                 {
                     return StatusCode(StatusCodes.Status400BadRequest);
                 }
 
-                await _categoriaService.AtualizarCategoria(categoria);
+                await _categoriaService.AtualizarCategoria(categoriaSelecionada);
 
                 return Ok();
             }
@@ -141,18 +139,16 @@ namespace ErpStudyWebAPI.Controllers
         /// <response code="200">Categoria retornada atualizada com sucesso!</response>
         /// <response code="500">Não foi possível atualizar a categoria no momento, tente novamente mais tarde!</response>
         [HttpDelete("DeletaCategoria")]
-        public async Task<IActionResult> DeletaCategoria([FromBody] Guid guidID)
+        public async Task<IActionResult> DeletaCategoria([FromBody] Guid categoriaSelecionadaguidID)
         {
             try
             {
-                if (guidID == Guid.Empty)
+                if (categoriaSelecionadaguidID == Guid.Empty)
                 {
                     return StatusCode(StatusCodes.Status400BadRequest);
                 }
-
-                await _categoriaService.DeletarCategoria(guidID);
-
-                return Ok();
+                
+                return Ok(await _categoriaService.DeletarCategoria(categoriaSelecionadaguidID));
             }
             catch (Exception ex)
             {

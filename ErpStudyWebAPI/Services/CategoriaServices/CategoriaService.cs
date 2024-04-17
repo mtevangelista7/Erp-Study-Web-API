@@ -39,10 +39,9 @@ namespace ErpStudyWebAPI.Services.CategoriaServices
             await _categoriaRepository.AtualizaCategoria(categoria);
         }
 
-        public async Task DeletarCategoria(Guid guidId)
+        public async Task<Guid> DeletarCategoria(Guid guidId)
         {
-            //CategoriaRepository categoriaRepository = new CategoriaRepository(Util.StringConexao);
-            await _categoriaRepository.DeletaCategoria(guidId);
+            return await _categoriaRepository.DeletaCategoria(guidId);
         }
     }
 }

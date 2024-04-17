@@ -89,24 +89,22 @@ namespace ErpStudyWebAPI.Repository.CategoriaRepo
             return listcategorias;
         }
 
-        public async Task DeletaCategoria(Guid guidId)
+        public async Task<Guid> DeletaCategoria(Guid guidId)
         {
             if (guidId == Guid.Empty)
             {
-                return;
+                return Guid.Empty;
             }
 
             await using SqlConnection connection = new SqlConnection(_connectionString);
-
             await connection.OpenAsync();
-
             const string sQuery = " DELETE FROM Categoria WHERE CategoriaID = @CategoriaID";
-
             await using SqlCommand command = new SqlCommand(sQuery, connection);
-
             command.Parameters.AddWithValue("@CategoriaID", guidId);
 
-            await command.ExecuteNonQueryAsync();
+            // Caso algum dado tenha sido deletado, retorna o id da categoria selecionada
+            // Se não, retorna o Guid vazio indicando que a categoria não foi selecionada
+            return await command.ExecuteNonQueryAsync() > 0 ? guidId : Guid.Empty;
         }
     }
 }

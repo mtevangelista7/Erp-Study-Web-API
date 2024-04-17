@@ -48,7 +48,6 @@ namespace ErpStudyWebAPI.Repository
                 " SELECT * FROM Produto LEFT JOIN Categoria ON Produto.CategoriaID = Caregoria.CategoriaID ";
 
             await using SqlCommand command = new SqlCommand(sQuery, connection);
-
             await using SqlDataReader reader = await command.ExecuteReaderAsync();
 
             List<Produto> produtos = new List<Produto>();
