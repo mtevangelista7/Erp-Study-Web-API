@@ -24,7 +24,7 @@ namespace Erp_Study_Web_API_Test
         {
             // Arrange
             Guid guidID = Guid.NewGuid();
-            Categoria categoria = new(); // Supondo que Categoria seja o tipo retornado pelo _categoriaService
+            Categoria categoria = new();
             _categoriaServiceMock.Setup(x => x.RetornaCategoria(guidID)).ReturnsAsync(categoria);
             CategoriaController controller = new(_loggerMock.Object, _categoriaServiceMock.Object);
 

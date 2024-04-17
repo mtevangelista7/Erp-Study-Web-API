@@ -41,6 +41,7 @@ namespace ErpStudyWebAPI
         {
             services.AddControllers();
 
+            // Aqui definimos nossas configurações de banco
             string dbHost = Environment.GetEnvironmentVariable("DB_HOST");
             string dbName = Environment.GetEnvironmentVariable("DB_NAME");
             string dbUser = Environment.GetEnvironmentVariable("DB_USER");
@@ -48,17 +49,20 @@ namespace ErpStudyWebAPI
             Util.StringConexao =
                 $"Server={dbHost};Database={dbName};User ID={dbUser};Password={dbPassword};Trusted_Connection=False; TrustServerCertificate=True;";
 
+            // Aqui definimos nossas configurações do swagger
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1",
                     new Microsoft.OpenApi.Models.OpenApiInfo { Title = "ErpStudyWebAPI", Version = "v1" });
+                
+                // Aqui é onde definimos a documentação que permite ao usuário, enviar o token bearer para o endpoint 
                 c.AddSecurityDefinition("Bearer",
                     new OpenApiSecurityScheme
                     {
                         In = ParameterLocation.Header,
-                        Description = "Please enter a valid token",
+                        Description = "Por favor, digite um token válido",
                         Name = "Authorization",
-                        Type = SecuritySchemeType.Http,
+                        Type = SecuritySchemeType.ApiKey,
                         BearerFormat = "JWT",
                         Scheme = "Bearer"
                     });
@@ -78,18 +82,27 @@ namespace ErpStudyWebAPI
                 c.IncludeXmlComments(filePath);
             });
 
+            // Aqui definimos como irá funcionar nossa autenticação com o JWT
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
+                options.RequireHttpsMetadata = false;
+                options.SaveToken = false; // TODO verificar como isso funciona
+                
+                // Setamos nossas opções de validação do token
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
+                    // Aqui definimos onde e como deve ser nossa chave de criptografia (igual ao método que cria token)
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII
                         .GetBytes(Configuration.GetSection("AppSettings:Token").Value)),
                     ValidateIssuer = false,
                     ValidateAudience = false
                 };
             });
-            
+
+            // Aqui definimos as configurações para a interface de cache
+            services.AddMemoryCache();
+
             // Repository
             services.AddScoped<ICategoriaRepository, CategoriaRepository>();
             services.AddScoped<IProdutoRepository, ProdutoRepository>();

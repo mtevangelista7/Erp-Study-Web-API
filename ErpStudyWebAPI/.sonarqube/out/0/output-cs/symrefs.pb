@@ -1,126 +1,298 @@
-Ü
-lC:\Users\p-mesantos\Downloads\Erp-Study-Web-API-main\Erp-Study-Web-API-main\ErpStudyWebAPI\Utilities\Util.cs
+`
+FC:\Users\p-mesantos\Erp-Study-Web-API\ErpStudyWebAPI\Utilities\Util.cs
 
  
 
- *„
-eC:\Users\p-mesantos\Downloads\Erp-Study-Web-API-main\Erp-Study-Web-API-main\ErpStudyWebAPI\Startup.cs
+ *˘
+?C:\Users\p-mesantos\Erp-Study-Web-API\ErpStudyWebAPI\Startup.cs
 
- 
-& 3 )
- + 
+ 
+  & 3"" )
+%% ,"" WW" /
 
- %
-9 A && 
- $$+ 1
-   $$= C
-!! $$N T
-"" $$` j
-&&# $(( 
+(( %d
+((9 A** 33 QQ ^^ __ `` cc dd ee 
+,, 11  
+-- 11, 2
+.. 11= C
+// 11O Y2
+33# $55 77 AA NN 
+LL  MM/ 8
+MM NN% -
+QQ\ cSS 
 
--- P
---2 511 44 66 88 :: ?? @@ 
---K N// 
-:: &<< 
-@@ BB CC ª
-uC:\Users\p-mesantos\Downloads\Erp-Study-Web-API-main\Erp-Study-Web-API-main\ErpStudyWebAPI\Services\ProdutoService.cs
+ii Z
+ii2 5mm pp rr tt uu ww || }} 
+iiK Nkk 
+ww &yy  
+}}  
+ÄÄ ≈
+_C:\Users\p-mesantos\Erp-Study-Web-API\ErpStudyWebAPI\Services\ProdutoServices\ProdutoService.cs
 
- 
+ 
+		, >  $
+1 B! 2
 
-		 $
-		- 4, 3
- / á
-wC:\Users\p-mesantos\Downloads\Erp-Study-Web-API-main\Erp-Study-Web-API-main\ErpStudyWebAPI\Services\CategoriaService.cs
+ *
+3 :3 :Ü
+`C:\Users\p-mesantos\Erp-Study-Web-API\ErpStudyWebAPI\Services\ProdutoServices\IProdutoService.cs
 
-
-
- !
+ $
 
- ,
-7 @6 ?
-  3 %
+ 
 
-% 5
-; A> D
-  3 ,
+& -ﬁ
+dC:\Users\p-mesantos\Erp-Study-Web-API\ErpStudyWebAPI\Services\CategoriaServices\ICategoriaService.cs
 
-+ <
-  3 ,
-
-!! ,
-!!7 @%%8 A
-##  3%% %
-
-(( *
-((0 6,,6 <
-**  3,, %Ω
-zC:\Users\p-mesantos\Downloads\Erp-Study-Web-API-main\Erp-Study-Web-API-main\ErpStudyWebAPI\Repository\ProdutoRepository.cs
+ &
 
 
 
- "2
-  1 ? P..? PTT? P
-( 8  0
+ &
 
- !F
-* 1!!9 @""> E##? F$$< C%%= D&&@ G<
- '    7 D
-  * Q [P
- %!! "" ## $$ %% && (( 
+
+
+1 :
 
-,, 1
-..  *// 33> H
-11 336 <
-33 $55) 0æ
-55  &99 ==  &==/ 5>> !>>, 2??  &??1 7@@! '@@2 8AA' -AA7 =BB) /BB9 ?EE& ,EE5 ;FF %FF0 6MM 
-77 "JJ OO 
-;; JJ $
+ /
 
-RR %
-RR+ 6\\> I
-TT  *VV ZZ? I
-UU ^^ aa 
-XX ZZ7 =
-ZZ %\\ ^^# *»
-|C:\Users\p-mesantos\Downloads\Erp-Study-Web-API-main\Erp-Study-Web-API-main\ErpStudyWebAPI\Repository\CategoriaRepository.cs
+5 ;
 
- $F
-  1 ? P""? P44? PAA? P__? P
-* :  0
+% 6
 
- )
-4 =5 >
-  * > H
- 6 <
- $  
+ &
 
-   +
-  6 ?''5 >((< E
-""  *## %%> H
-$$ %%6 <(
-%% $'' (( ** 
+1 :
 
---% 5
---; A// 99< B
-44  *55 77> H
-66 776 <
-77 $99 ;;3 :
-;; << 
+ $
 
-??+ <
-AA  *BB DD> H
-CC DD6 <
-DD $FF/ 62
-FF  &JJ NN" (OO !OO, 2
-HH *RR UU !
-LL $RR# -
+* 0„
+cC:\Users\p-mesantos\Erp-Study-Web-API\ErpStudyWebAPI\Services\CategoriaServices\CategoriaService.cs
 
-XX )
-XX/ 5ZZ dd< B
-__  *`` bb> H
-aa bb6 <
-bb $dd ff ◊
-eC:\Users\p-mesantos\Downloads\Erp-Study-Web-API-main\Erp-Study-Web-API-main\ErpStudyWebAPI\Program.cs
+		 !F
+. B   & -!! -'' &-- &
+5 H# 6
+
+ ,
+7 @7 @
+
+% 5
+; A? E
+
++ <
+
+$$ ,
+$$7 @''9 B
+
+** *
+**0 6--7 =»
+ZC:\Users\p-mesantos\Erp-Study-Web-API\ErpStudyWebAPI\Services\AuthServices\IAuthService.cs
+
+ !
+
+		 "
+
+		+ 2
+
+		; @
+
+
+
+ !
+
+
+
+) 4
+
+
+
+= B
+
+  
+
+( 3è
+YC:\Users\p-mesantos\Erp-Study-Web-API\ErpStudyWebAPI\Services\AuthServices\AuthService.cs
+
+ 
+( 6  (2
+, > 44$ 6SS +__ +
+. ?! 2
+P ] *
+  BB% . 
+) 0X _
+í ô
+ %%- 3
+! $!!> A
+!! $''% *
+##$ 3++; J
+**$ 0++" .-- 
+++ --+ 0
+
+00" .
+006 A44F Q
+00J O;;( -
+22 %BB "EE %2
+44 66 ;;/ 6;;E LBB/ 6
+
+HH  /2
+HH8 ?JJ$ +PP QQ SS: A
+HHH MNN 
+NN, 8PP# /
+NNE QQQ# /
+VV "NN 
+VV* /ZZL Q
+VV< EZZ 
+VVR [YY 
+XX !YY ZZ 
+]]  -JJ #
+]]5 @__; F
+bb &;; '
+bb. 3eeV [
+bbI Rff6 ?
+bb[ dddP Y
+dd !ee" &
+ee ff  
+ff( )ff1 2
+ff+ ,ff@ AÍ
+`C:\Users\p-mesantos\Erp-Study-Web-API\ErpStudyWebAPI\Repository\UsuarioRepo\UsuarioRepository.cs
+
+
+
+ "
+  1E V""E V
+
+  -
+
+6 =
+ ' 
+& 0 
+
+# 1
+9 D* 5((< G
+""& 0## &&D N
+%% &&< B
+&&# *(( ))- 4
+)) ++ ü
+aC:\Users\p-mesantos\Erp-Study-Web-API\ErpStudyWebAPI\Repository\UsuarioRepo\IUsuarioRepository.cs
+
+ '
+
+		 '
+
+		0 7
+
+
+
+ +
+
+
+
+3 >É
+`C:\Users\p-mesantos\Erp-Study-Web-API\ErpStudyWebAPI\Repository\ProdutoRepo\ProdutoRepository.cs
+
+ "(
+  1E V,,E VSSE V
+
+ 'F
+0 7  5 <!!: A""; B##8 ?$$9 @%%< C<
+ '    < I
+& 0 V `P
+# *   !! "" ## $$ %% '' 
+
+**) =
+,,& 0-- 22D N
+// 22< B
+22# *445 <æ
+44& ,88 <<  &<</ 5== !==, 2>>  &>>1 7??! '??2 8@@' -@@7 =AA) /AA9 ?DD& ,DD5 ;EE %EE0 6LL 
+66 "II NN 
+:: II $
+
+QQ# 1
+QQ7 B[[: E
+SS& 0UU YYD N
+TT ]] __ 
+WW YY< B
+YY# *[[ ]] &´
+aC:\Users\p-mesantos\Erp-Study-Web-API\ErpStudyWebAPI\Repository\ProdutoRepo\IProdutoRepository.cs
+
+ '
+
+
+
+ 
+
+
+
+# *
+
+ 0
+
+ $
+
+* 5ﬂ
+eC:\Users\p-mesantos\Erp-Study-Web-API\ErpStudyWebAPI\Repository\CategoriaRepo\ICategoriaRepository.cs
+
+ )
+
+
+
+ 
+
+
+
+' 0
+
+ 
+
+) 2
+
+ (
+
+. 4
+
+ /
+
+ 
+
+" (ê
+dC:\Users\p-mesantos\Erp-Study-Web-API\ErpStudyWebAPI\Repository\CategoriaRepo\CategoriaRepository.cs
+
+ $<
+  1? PE V22E VCCE VccE V
+
+ )
+4 =5 >
+  * > H
+ 6 <
+ $  
+
+ +
+6 ?%%5 >&&< E
+& 0 ##D N
+!! ##< B(
+### *%% && (( 
+
+++% 5
+++; A-- ::< B
+22& 044 88D N
+66 88< B
+88# *:: <<3 :
+<< >> 
+
+AA+ <
+CC& 0EE IID N
+GG II< B
+II# *KK5 <2
+KK& ,OO SS" (SSH NSSY _
+MM *VV YY !
+QQ #VV# ,
+
+\\ )
+\\/ 5^^ kk< B
+cc& 0ee iiD N
+gg ii< B
+ii# *kk mm ±
+?C:\Users\p-mesantos\Erp-Study-Web-API\ErpStudyWebAPI\Program.cs
 
  
 
@@ -128,8 +300,19 @@ eC:\Users\p-mesantos\Downloads\Erp-Study-Web-API-main\Erp-Study-Web-API-main\Erp
 ) - "
 # 4 
 > B& *
-* 4 Œ
-lC:\Users\p-mesantos\Downloads\Erp-Study-Web-API-main\Erp-Study-Web-API-main\ErpStudyWebAPI\Models\Produto.cs
+* 4 Ñ
+FC:\Users\p-mesantos\Erp-Study-Web-API\ErpStudyWebAPI\Models\Usuario.cs
+
+ 
+
+ 
+
+ !
+
+ "
+
+ "®
+FC:\Users\p-mesantos\Erp-Study-Web-API\ErpStudyWebAPI\Models\Produto.cs
 
  
 
@@ -147,44 +330,76 @@ lC:\Users\p-mesantos\Downloads\Erp-Study-Web-API-main\Erp-Study-Web-API-main\Erp
 
   
 
- "Ä
-rC:\Users\p-mesantos\Downloads\Erp-Study-Web-API-main\Erp-Study-Web-API-main\ErpStudyWebAPI\Models\Enums\Unidade.cs
+ "Z
+LC:\Users\p-mesantos\Erp-Study-Web-API\ErpStudyWebAPI\Models\Enums\Unidade.cs
 
- Å
-sC:\Users\p-mesantos\Downloads\Erp-Study-Web-API-main\Erp-Study-Web-API-main\ErpStudyWebAPI\Models\Enums\Condicao.cs
+ [
+MC:\Users\p-mesantos\Erp-Study-Web-API\ErpStudyWebAPI\Models\Enums\Condicao.cs
 
- î
-nC:\Users\p-mesantos\Downloads\Erp-Study-Web-API-main\Erp-Study-Web-API-main\ErpStudyWebAPI\Models\Categoria.cs
+ |
+VC:\Users\p-mesantos\Erp-Study-Web-API\ErpStudyWebAPI\Models\DTOs\UsuarioCadastroDto.cs
+
+ #
+
+ !
+
+ n
+HC:\Users\p-mesantos\Erp-Study-Web-API\ErpStudyWebAPI\Models\Categoria.cs
 
  
 
  
 
- …
-{C:\Users\p-mesantos\Downloads\Erp-Study-Web-API-main\Erp-Study-Web-API-main\ErpStudyWebAPI\Controllers\ProdutoController.cs
-		 "! 2) :
-4 ; 
-< B ù
-}C:\Users\p-mesantos\Downloads\Erp-Study-Web-API-main\Erp-Study-Web-API-main\ErpStudyWebAPI\Controllers\CategoriaController.cs
- $! 4+ >F
-6 = ** :: JJ aa xx 
-@ F 
+ ˘
+UC:\Users\p-mesantos\Erp-Study-Web-API\ErpStudyWebAPI\Controllers\UsuarioController.cs
+ "! 2) :(
+4 ; ## << (
+& 2  "22 &
+< B 
+Q \ &
 
-) ;
-Q Z $$: C
-""! 1$$ &
+) 5
+I [0 BP b
 
-00) 9
-00J P66B H
-44! 166  0
+++) 6
+++J Y334 C33R a(
+-- 11 55 @@ ë
+UC:\Users\p-mesantos\Erp-Study-Web-API\ErpStudyWebAPI\Controllers\ProdutoController.cs
+ "! 2) :
+4 ; 
+) 8 55 %
+< B 
+T b ,
 
-@@) :
-DD! 1FF  0
+ )
 
-PP) :
-PPP YTT [[: C
-YY! 1[[ &
+,,) 9
+,,B I00 557 >ã
+WC:\Users\p-mesantos\Erp-Study-Web-API\ErpStudyWebAPI\Controllers\CategoriaController.cs
+ $! 4+ >
 
-gg) 8
-ggI Okk rr8 >
-pp! 1rr &
+ 5J
+6 = :: TT hh 
+ÉÉ 
+ûû H
++ < 44 'PP  1dd  1}} '
+òò '
+@ F 
+Z j! 1
+
+++) ;
+++Q Z// 44; D
+
+GG) 9
+GGJ PMM PPC I
+
+``) :
+
+tt) :
+ttP Yxx }}; D
+
+èè) 8$
+
+èèI O
+ìì 
+òò9 ?
