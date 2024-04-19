@@ -1,3 +1,4 @@
+using ErpStudyWebAPI.Models;
 using ErpStudyWebAPI.Repository;
 using ErpStudyWebAPI.Repository.CategoriaRepo;
 using ErpStudyWebAPI.Repository.ProdutoRepo;
@@ -7,6 +8,7 @@ using ErpStudyWebAPI.Services.AuthServices;
 using ErpStudyWebAPI.Services.CategoriaServices;
 using ErpStudyWebAPI.Services.ProdutoServices;
 using ErpStudyWebAPI.Utilities;
+using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -102,6 +104,9 @@ namespace ErpStudyWebAPI
 
             // Aqui definimos as configurações para a interface de cache
             services.AddMemoryCache();
+            
+            // fluent validation
+            services.AddScoped<IValidator<Categoria>, CategoriaValidator>();
 
             // Repository
             services.AddScoped<ICategoriaRepository, CategoriaRepository>();
