@@ -1,6 +1,8 @@
 using ErpStudyWebAPI.Models;
 using ErpStudyWebAPI.Models.DTOs;
 using ErpStudyWebAPI.Services.AuthServices;
+using FluentValidation;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -18,11 +20,14 @@ namespace ErpStudyWebAPI.Controllers
     {
         private readonly ILogger<UsuarioController> _logger;
         private readonly IAuthService _authService;
+        private readonly IValidator<UsuarioCadastroDto> _validator;
 
-        public UsuarioController(ILogger<UsuarioController> logger, IAuthService authService)
+        public UsuarioController(ILogger<UsuarioController> logger, IAuthService authService,
+            IValidator<UsuarioCadastroDto> validator)
         {
             _logger = logger;
             _authService = authService;
+            _validator = validator;
         }
 
         [HttpPost("Login")]
@@ -76,6 +81,51 @@ namespace ErpStudyWebAPI.Controllers
                 _logger.LogError(err, "Erro ao tentar cadastar usuario");
                 return StatusCode(StatusCodes.Status500InternalServerError, err.Message);
             }
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> AtualizaUsuario(UsuarioCadastroDto usuarioCadastroDto)
+        {
+            try
+            {
+                // realiza a validação da model
+                ValidationResult validatorResult = await _validator.ValidateAsync(usuarioCadastroDto);
+
+                if (!validatorResult.IsValid)
+                {
+                    // retorna 400 com os dados de erro
+                    return BadRequest(validatorResult.Errors);
+                }
+            }
+            catch (Exception err)
+            {
+                _logger.LogError(err, "Erro ao tentar atualizar usuario");
+                return StatusCode(StatusCodes.Status500InternalServerError, err.Message);
+            }
+
+            // TODO: Implementar aqui após finalizar repository e service
+            return null;
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeletaUsuario(Guid guidUsuario)
+        {
+            try
+            {
+                // Caso o ID não tenha vindo corretamente
+                if (guidUsuario == Guid.Empty)
+                {
+                    // aaaaaaaa
+                }
+            }
+            catch (Exception err)
+            {
+                _logger.LogError(err, "Erro ao tentar cadastar usuario");
+                return StatusCode(StatusCodes.Status500InternalServerError, err.Message);
+            }
+
+            // TODO: implementar aqui após finalizar o repository e service
+            return null;
         }
     }
 }

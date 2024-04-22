@@ -1,4 +1,5 @@
 using ErpStudyWebAPI.Models;
+using ErpStudyWebAPI.Models.DTOs;
 using ErpStudyWebAPI.Repository;
 using ErpStudyWebAPI.Repository.CategoriaRepo;
 using ErpStudyWebAPI.Repository.ProdutoRepo;
@@ -108,6 +109,7 @@ namespace ErpStudyWebAPI
             // fluent validation
             services.AddScoped<IValidator<Categoria>, CategoriaValidator>();
             services.AddScoped<IValidator<Produto>, ProdutoValidator>();
+            services.AddScoped<IValidator<UsuarioCadastroDto>, UsuarioCadastroDTOValidator>();
 
             // Repository
             services.AddScoped<ICategoriaRepository, CategoriaRepository>();
