@@ -65,13 +65,10 @@ namespace ErpStudyWebAPI.Repository.CategoriaRepo
         public async Task<List<Categoria>> RetornaCategorias()
         {
             await using SqlConnection connection = new SqlConnection(_connectionString);
-
             await connection.OpenAsync();
 
             const string sQuery = " SELECT * FROM Categoria ";
-
             await using SqlCommand command = new SqlCommand(sQuery, connection);
-
             await using SqlDataReader reader = await command.ExecuteReaderAsync();
 
             List<Categoria> listcategorias = new List<Categoria>();

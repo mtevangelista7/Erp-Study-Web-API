@@ -1,4 +1,5 @@
 ﻿using ErpStudyWebAPI.Models.Enums;
+using FluentValidation;
 using System;
 
 namespace ErpStudyWebAPI.Models
@@ -12,5 +13,15 @@ namespace ErpStudyWebAPI.Models
         public Unidade Unidade { get; set; }
         public Condicao Condicao { get; set; }
         public Categoria Categoria { get; set; }
+    }
+
+    public class ProdutoValidator : AbstractValidator<Produto>
+    {
+        public ProdutoValidator()
+        {
+            When(produto => produto is null, ()
+                    => RuleFor(produto => produto).NotNull())
+                .Otherwise(() => RuleFor(produto => produto.ProdutoID).NotEmpty());
+        }
     }
 }

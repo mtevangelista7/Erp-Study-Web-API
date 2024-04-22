@@ -107,6 +107,7 @@ namespace ErpStudyWebAPI
             
             // fluent validation
             services.AddScoped<IValidator<Categoria>, CategoriaValidator>();
+            services.AddScoped<IValidator<Produto>, ProdutoValidator>();
 
             // Repository
             services.AddScoped<ICategoriaRepository, CategoriaRepository>();

@@ -31,5 +31,25 @@ namespace ErpStudyWebAPI.Services.ProdutoServices
         {
             return await _produtoRepository.RetornaTodosProdutos();
         }
+
+        /// <summary>
+        /// Atualiza um produto 
+        /// </summary>
+        /// <param name="produto"></param>
+        /// <returns></returns>
+        public async Task<Produto> AtualizarProduto(Produto produto)
+        {
+            return await _produtoRepository.AtualizarProduto(produto);
+        }
+
+        /// <summary>
+        /// Deleta um produto
+        /// </summary>
+        /// <param name="produto"></param>
+        /// <returns></returns>
+        public async Task<Produto> DeletarProduto(Produto produto)
+        {
+            return await _produtoRepository.DeletarProduto(produto);
+        }
     }
 }

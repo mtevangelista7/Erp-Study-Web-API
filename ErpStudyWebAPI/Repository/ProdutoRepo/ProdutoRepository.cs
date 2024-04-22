@@ -80,18 +80,50 @@ namespace ErpStudyWebAPI.Repository
         public async Task<Produto> RetornaProduto(Guid produtoGuid)
         {
             await using SqlConnection connection = new SqlConnection(_connectionString);
-            Produto produto;
             await connection.OpenAsync();
 
             const string sQuery = " SELECT * FROM Produto WHERE Produto.ProdutoID = @ProdutoID ";
-
             await using SqlCommand command = new SqlCommand(sQuery, connection);
-
             command.Parameters.AddWithValue("@ProdutoID", produtoGuid);
 
-            produto = (Produto)command.ExecuteScalar();
+            Produto produto = (Produto)command.ExecuteScalar();
 
             return produto;
+        }
+
+        public async Task<Produto> AtualizarProduto(Produto produto)
+        {
+            await using SqlConnection connection = new SqlConnection(_connectionString);
+            await connection.OpenAsync();
+
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append(" UPDATE Produto SET ");
+            stringBuilder.Append(" Nome = @Nome, CodigoSKU = @CodigoSKU, PrecoVenda = @PrecoVenda, ");
+            stringBuilder.Append(" Unidade = @Unidade, Condicao = @Condicao, Categoria = @Categoria ");
+            stringBuilder.Append(" WHERE ProdutoID = @ProdutoID ");
+            
+            await using SqlCommand command = new SqlCommand(stringBuilder.ToString(), connection);
+            command.Parameters.AddWithValue("@Nome", produto.Nome);
+            command.Parameters.AddWithValue("@CodigoSKU", produto.CodigoSKU);
+            command.Parameters.AddWithValue("@PrecoVenda", produto.PrecoVenda);
+            command.Parameters.AddWithValue("@Unidade", produto.Unidade);
+            command.Parameters.AddWithValue("@Condicao", produto.Condicao);
+            command.Parameters.AddWithValue("@Categoria", produto.Categoria);
+            command.Parameters.AddWithValue("@ProdutoID", produto.ProdutoID);
+            
+            return await command.ExecuteNonQueryAsync() > 0 ? produto : null;
+        }
+
+        public async Task<Produto> DeletarProduto(Produto produto)
+        {
+            await using SqlConnection connection = new SqlConnection(_connectionString);
+            await connection.OpenAsync();
+
+            const string querySql = " DELETE FROM Produto WHERE ProdutoID = @ProdutoID ";
+            await using SqlCommand command = new SqlCommand(querySql, connection);
+            command.Parameters.AddWithValue("@ProdutoID", produto.ProdutoID);
+
+            return await command.ExecuteNonQueryAsync() > 0 ? produto : null;
         }
     }
 }
