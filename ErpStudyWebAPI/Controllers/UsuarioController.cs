@@ -30,6 +30,7 @@ namespace ErpStudyWebAPI.Controllers
             _validator = validator;
         }
 
+        [AllowAnonymous]
         [HttpPost("Login")]
         public async Task<IActionResult> RealizaLogin(UsuarioCadastroDto usuarioCadastroDto)
         {
@@ -56,6 +57,7 @@ namespace ErpStudyWebAPI.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> InsereUsuario(UsuarioCadastroDto usuarioCadastro)
         {
