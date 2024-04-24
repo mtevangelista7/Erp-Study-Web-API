@@ -1,4 +1,5 @@
 using ErpStudyWebAPI.Models;
+using ErpStudyWebAPI.Models.DTOs;
 using ErpStudyWebAPI.Repository.UsuarioRepo;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
@@ -78,7 +79,7 @@ namespace ErpStudyWebAPI.Services.AuthServices
         /// <param name="nomeUsuario"></param>
         /// <param name="senha"></param>
         /// <returns></returns>
-        public async Task<string> RealizaLogin(string nomeUsuario, string senha)
+        public async Task<string> GeraTokenAcesso(string nomeUsuario, string senha)
         {
             string tokenUsuarioLogado;
 
@@ -175,7 +176,7 @@ namespace ErpStudyWebAPI.Services.AuthServices
         }
         
         /// <summary>
-        /// 
+        /// Verifica se o hash da senha é valido
         /// </summary>
         /// <param name="senha"></param>
         /// <param name="senhaHash"></param>
@@ -207,6 +208,29 @@ namespace ErpStudyWebAPI.Services.AuthServices
         {
             // Verifica se temos um token armazenado no cache pelo Guid do usuario, caso sim retorna, caso não retorna null
             return _memoryCache.TryGetValue(guidUsuario.ToString(), out string cachedToken) ? cachedToken : null;
+        }
+
+        /// <summary>
+        /// Atualiza o usuario na base (não inclui senha)
+        /// </summary>
+        /// <param name="usuario"></param>
+        /// <param name="senha"></param>
+        public async Task<bool> AtualizaInfoUsuario(UsuarioCadastroDto usuario)
+        {
+            // Caso o usuario não exista apenas sai
+            if (!await UsuarioExiste(usuario.NomeUsuario)) return false;
+
+            return await _usuarioRepository.AtualizaInfoUsuario(usuario);
+        }
+
+        /// <summary>
+        /// Deleta um usuario pelo o guid ID
+        /// </summary>
+        /// <param name="guidIdUsuario"></param>
+        /// <returns></returns>
+        public async Task<bool> DeletaUsuario(Guid guidIdUsuario)
+        {
+            return await _usuarioRepository.DeletaUsuario(guidIdUsuario);
         }
     }
 }
