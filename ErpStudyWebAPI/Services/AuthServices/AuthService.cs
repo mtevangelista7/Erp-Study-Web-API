@@ -214,7 +214,6 @@ namespace ErpStudyWebAPI.Services.AuthServices
         /// Atualiza o usuario na base (não inclui senha)
         /// </summary>
         /// <param name="usuario"></param>
-        /// <param name="senha"></param>
         public async Task<bool> AtualizaInfoUsuario(UsuarioCadastroDto usuario)
         {
             // Caso o usuario não exista apenas sai

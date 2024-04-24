@@ -1,5 +1,6 @@
 ﻿using ErpStudyWebAPI.Models;
 using ErpStudyWebAPI.Repository.ProdutoRepo;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -18,9 +19,19 @@ namespace ErpStudyWebAPI.Services.ProdutoServices
         /// Adiciona um novo produto
         /// </summary>
         /// <param name="produto"></param>
-        public async Task AdicionarProduto(Produto produto)
+        public async Task<Produto> AdicionarProduto(Produto produto)
         {
-            await _produtoRepository.InsereProduto(produto);
+            Guid guidProduto = await _produtoRepository.InsereProduto(produto);
+            
+            // Caso tenha adicionado o produto com sucesso
+            if (guidProduto != Guid.Empty)
+            {
+                // retorna o produto atualizado
+                return await RetornarProduto(guidProduto);
+            }
+            
+            // Caso não tenha conseguido adicionar retorna null
+            return null;
         }
 
         /// <summary>
@@ -33,11 +44,21 @@ namespace ErpStudyWebAPI.Services.ProdutoServices
         }
 
         /// <summary>
+        /// Retorna um produto pelo id
+        /// </summary>
+        /// <param name="guidProduto"></param>
+        /// <returns></returns>
+        public async Task<Produto> RetornarProduto(Guid guidProduto)
+        {
+            return await _produtoRepository.RetornaProduto(guidProduto);
+        }
+
+        /// <summary>
         /// Atualiza um produto 
         /// </summary>
         /// <param name="produto"></param>
         /// <returns></returns>
-        public async Task<Produto> AtualizarProduto(Produto produto)
+        public async Task<bool> AtualizarProduto(Produto produto)
         {
             return await _produtoRepository.AtualizarProduto(produto);
         }
@@ -45,11 +66,11 @@ namespace ErpStudyWebAPI.Services.ProdutoServices
         /// <summary>
         /// Deleta um produto
         /// </summary>
-        /// <param name="produto"></param>
+        /// <param name="guidProduto"></param>
         /// <returns></returns>
-        public async Task<Produto> DeletarProduto(Produto produto)
+        public async Task<bool> DeletarProduto(Guid guidProduto)
         {
-            return await _produtoRepository.DeletarProduto(produto);
+            return await _produtoRepository.DeletarProduto(guidProduto);
         }
     }
 }

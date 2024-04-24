@@ -7,10 +7,10 @@ namespace ErpStudyWebAPI.Repository.ProdutoRepo
 {
     public interface IProdutoRepository
     {
-        Task InsereProduto(Produto produto);
+        Task<Guid> InsereProduto(Produto produto);
         Task<List<Produto>> RetornaTodosProdutos();
         Task<Produto> RetornaProduto(Guid produtoGuid);
-        Task<Produto> AtualizarProduto(Produto produto);
-        Task<Produto> DeletarProduto(Produto produto);
+        Task<bool> AtualizarProduto(Produto produto);
+        Task<bool> DeletarProduto(Guid guidProduto);
     }
 }

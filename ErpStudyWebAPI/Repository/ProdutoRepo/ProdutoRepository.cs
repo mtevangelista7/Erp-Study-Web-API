@@ -14,18 +14,17 @@ namespace ErpStudyWebAPI.Repository
     {
         private readonly string _connectionString = Util.StringConexao;
 
-        public async Task InsereProduto(Produto produto)
+        public async Task<Guid> InsereProduto(Produto produto)
         {
             StringBuilder stringBuilder = new StringBuilder();
-
             await using SqlConnection connection = new SqlConnection(_connectionString);
-
             await connection.OpenAsync();
 
             stringBuilder.Append(" INSERT INTO Produto ");
             stringBuilder.Append(" ( ");
             stringBuilder.Append(" @Nome, @CodigoSKU, @PrecoVenda, @Unidade, @Condicao, @CategoriaID ");
-            stringBuilder.Append(" ) ");
+            stringBuilder.Append(" ); ");
+            stringBuilder.Append(" SELECT ProdutoId FROM Produto LIMIT 1 ");
 
             await using SqlCommand command = new SqlCommand(stringBuilder.ToString(), connection);
 
@@ -35,8 +34,8 @@ namespace ErpStudyWebAPI.Repository
             command.Parameters.AddWithValue("@Unidade", produto.Unidade);
             command.Parameters.AddWithValue("@Condicao", produto.Condicao);
             command.Parameters.AddWithValue("@CategoriaID", produto.Categoria.CategoriaID);
-
-            await command.ExecuteNonQueryAsync();
+            
+            return (Guid)await command.ExecuteScalarAsync();
         }
 
         public async Task<List<Produto>> RetornaTodosProdutos()
@@ -91,7 +90,7 @@ namespace ErpStudyWebAPI.Repository
             return produto;
         }
 
-        public async Task<Produto> AtualizarProduto(Produto produto)
+        public async Task<bool> AtualizarProduto(Produto produto)
         {
             await using SqlConnection connection = new SqlConnection(_connectionString);
             await connection.OpenAsync();
@@ -111,19 +110,19 @@ namespace ErpStudyWebAPI.Repository
             command.Parameters.AddWithValue("@Categoria", produto.Categoria);
             command.Parameters.AddWithValue("@ProdutoID", produto.ProdutoID);
             
-            return await command.ExecuteNonQueryAsync() > 0 ? produto : null;
+            return await command.ExecuteNonQueryAsync() > 0;
         }
 
-        public async Task<Produto> DeletarProduto(Produto produto)
+        public async Task<bool> DeletarProduto(Guid guidProdutoId)
         {
             await using SqlConnection connection = new SqlConnection(_connectionString);
             await connection.OpenAsync();
 
             const string querySql = " DELETE FROM Produto WHERE ProdutoID = @ProdutoID ";
             await using SqlCommand command = new SqlCommand(querySql, connection);
-            command.Parameters.AddWithValue("@ProdutoID", produto.ProdutoID);
+            command.Parameters.AddWithValue("@ProdutoID", guidProdutoId);
 
-            return await command.ExecuteNonQueryAsync() > 0 ? produto : null;
+            return await command.ExecuteNonQueryAsync() > 0;
         }
     }
 }
