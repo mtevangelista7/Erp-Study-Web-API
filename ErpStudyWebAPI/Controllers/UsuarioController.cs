@@ -194,7 +194,7 @@ namespace ErpStudyWebAPI.Controllers
         /// <remarks>
         /// Exemplo de requisição:
         ///
-        ///     DELETE /api/usuarios/DeletaUsuario?guidUsuario=00000000-0000-0000-0000-000000000000
+        ///     DELETE /DeletaUsuario?guidUsuario=00000000-0000-0000-0000-000000000000
         ///
         /// </remarks>
         /// <param name="guidUsuario">O GUID do usuário a ser deletado.</param>

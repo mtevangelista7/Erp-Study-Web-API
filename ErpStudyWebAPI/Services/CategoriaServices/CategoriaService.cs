@@ -30,12 +30,12 @@ namespace ErpStudyWebAPI.Services.CategoriaServices
             return await _categoriaRepository.RetornaCategorias();
         }
 
-        public async Task AtualizarCategoria(Categoria categoria)
+        public async Task<bool> AtualizarCategoria(Categoria categoria)
         {
-            await _categoriaRepository.AtualizaCategoria(categoria);
+            return await _categoriaRepository.AtualizaCategoria(categoria);
         }
 
-        public async Task<Guid> DeletarCategoria(Guid guidId)
+        public async Task<bool> DeletarCategoria(Guid guidId)
         {
             return await _categoriaRepository.DeletaCategoria(guidId);
         }

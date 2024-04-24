@@ -10,7 +10,7 @@ namespace ErpStudyWebAPI.Services.CategoriaServices
         public Task AdicionarCategoria(Categoria categoria);
         public Task<Categoria> RetornaCategoria(Guid guidId);
         public Task<List<Categoria>> RetornaCategorias();
-        public Task AtualizarCategoria(Categoria categoria);
-        public Task<Guid> DeletarCategoria(Guid guidId);
+        public Task<bool> AtualizarCategoria(Categoria categoria);
+        public Task<bool> DeletarCategoria(Guid guidId);
     }
 }

@@ -24,7 +24,7 @@ namespace ErpStudyWebAPI.Repository.CategoriaRepo
             await command.ExecuteNonQueryAsync();
         }
 
-        public async Task AtualizaCategoria(Categoria categoria)
+        public async Task<bool> AtualizaCategoria(Categoria categoria)
         {
             await using SqlConnection connection = new SqlConnection(_connectionString);
 
@@ -37,7 +37,7 @@ namespace ErpStudyWebAPI.Repository.CategoriaRepo
             command.Parameters.AddWithValue("@Nome", categoria.Nome);
             command.Parameters.AddWithValue("@CategoriaID", categoria.CategoriaID);
 
-            await command.ExecuteNonQueryAsync();
+            return await command.ExecuteNonQueryAsync() > 0;
         }
 
         public async Task<Categoria> RetornaCategoria(Guid guidId)
@@ -86,13 +86,8 @@ namespace ErpStudyWebAPI.Repository.CategoriaRepo
             return listcategorias;
         }
 
-        public async Task<Guid> DeletaCategoria(Guid guidId)
+        public async Task<bool> DeletaCategoria(Guid guidId)
         {
-            if (guidId == Guid.Empty)
-            {
-                return Guid.Empty;
-            }
-
             await using SqlConnection connection = new SqlConnection(_connectionString);
             await connection.OpenAsync();
             const string sQuery = " DELETE FROM Categoria WHERE CategoriaID = @CategoriaID";
@@ -101,7 +96,7 @@ namespace ErpStudyWebAPI.Repository.CategoriaRepo
 
             // Caso algum dado tenha sido deletado, retorna o id da categoria selecionada
             // Se não, retorna o Guid vazio indicando que a categoria não foi selecionada
-            return await command.ExecuteNonQueryAsync() > 0 ? guidId : Guid.Empty;
+            return await command.ExecuteNonQueryAsync() > 0;
         }
     }
 }

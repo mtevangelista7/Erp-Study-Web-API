@@ -1,6 +1,7 @@
 ﻿using ErpStudyWebAPI.Models;
 using ErpStudyWebAPI.Services;
 using ErpStudyWebAPI.Services.CategoriaServices;
+using ErpStudyWebAPI.Utilities;
 using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
@@ -34,16 +35,27 @@ namespace ErpStudyWebAPI.Controllers
         }
 
         /// <summary>
-        /// Adicina um nova categoria
+        /// Adiciona uma nova categoria ao sistema.
         /// </summary>
-        /// <remarks>teste</remarks>
-        /// <response code="201">Categoria criada com sucesso!</response>
-        /// <response code="500">Não foi possível criar a categoria no momento, tente novamente mais tarde!</response>
-        /// <response code="400">O objeto categoria não foi enviado corretamente, verifique e tente novamente!</response>
+        /// <remarks>
+        /// Exemplo de requisição:
+        ///
+        ///     POST /api/categorias/AdicionarCategoria
+        ///     {
+        ///         "Nome": "Nova Categoria",
+        ///         "Descricao": "Descrição da nova categoria."
+        ///     }
+        ///
+        /// </remarks>
+        /// <param name="categoria">Os dados da nova categoria a serem adicionados.</param>
+        /// <returns>O objeto da nova categoria adicionada.</returns>
+        /// <response code="201">Categoria adicionada com sucesso.</response>
+        /// <response code="400">Requisição inválida. Verifique os detalhes da solicitação.</response>
+        /// <response code="500">Erro interno do servidor.</response>
         [HttpPost("AdicionarCategoria")]
-        [ProducesResponseType(typeof(Categoria), 201)]
-        [ProducesResponseType(400)]
-        [ProducesResponseType(500)]
+        [ProducesResponseType(typeof(Categoria), StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> AdicionarCategoria([FromBody] Categoria categoria)
         {
             try
@@ -61,69 +73,118 @@ namespace ErpStudyWebAPI.Controllers
                 await _categoriaService.AdicionarCategoria(categoria);
 
                 // Retorna 201 de sucesso
-                return StatusCode(StatusCodes.Status201Created);
+                return Created(nameof(AdicionarCategoria), categoria);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Erro ao salvar categoria");
+                _logger.LogError(ex, Util.MensagensStrings.ErroTentarCadastrarRecurso);
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
 
         /// <summary>
-        /// Retorna uma categoria pelo ID
+        /// Retorna uma categoria existente no sistema com base no GUID fornecido.
         /// </summary>
-        /// <remarks>teste</remarks>
-        /// <response code="200">Categoria retornada com sucesso</response>
-        /// <response code="500">Não foi possível retonar a categoria no momento, tente novamente mais tarde!</response>
-        /// <response code="400">O objeto id não foi enviado corretamente, verifique e tente novamente!</response>
-        [HttpPost("RetornaCategoria")]
-        public async Task<IActionResult> RetornaCategoria([FromBody] Guid categoriaSelecionadaguidID)
+        /// <remarks>
+        /// Exemplo de requisição:
+        ///
+        ///     POST /RetornaCategoria{guidCategoria}
+        ///
+        /// </remarks>
+        /// <param name="guidCategoria">O GUID da categoria a ser retornada.</param>
+        /// <returns>A categoria encontrada.</returns>
+        /// <response code="200">Categoria encontrada com sucesso.</response>
+        /// <response code="400">Requisição inválida. O GUID da categoria não foi fornecido corretamente.</response>
+        /// <response code="404">Recurso não encontrado. A categoria especificada não foi encontrada.</response>
+        /// <response code="500">Erro interno do servidor.</response>
+        [HttpPost("RetornaCategoria{guidCategoria}")]
+        [ProducesResponseType(typeof(Categoria), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> RetornaCategoria(Guid guidCategoria)
         {
             try
             {
                 // Caso o guid recebido não seja valido, retorna um badrequest
-                if (categoriaSelecionadaguidID == Guid.Empty)
-                    return StatusCode(StatusCodes.Status400BadRequest);
+                if (guidCategoria == Guid.Empty)
+                    return BadRequest(Util.MensagensStrings.RecursoFornecidoForaEsperado);
 
-                // realiza a busca da categoria pelo service e retorna a mesmo com o 200
-                return Ok(await _categoriaService.RetornaCategoria(categoriaSelecionadaguidID));
+                // Realiza a busca da categoria
+                Categoria categoria = await _categoriaService.RetornaCategoria(guidCategoria);
+
+                // Caso não tenha localizado a mesma
+                if (categoria is null)
+                {
+                    // retorna o not found com a mensagem
+                    return NotFound(Util.MensagensStrings.RecursoNaoEncontrado);
+                }
+
+                // Caso tenha localizado, retorna 200 com o objeto criado
+                return Ok(categoria);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Erro ao obter categoria");
+                _logger.LogError(ex, Util.MensagensStrings.ErroTentarObterRecurso);
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
 
+
         /// <summary>
-        /// Retorna uma lista com todas as categorias
+        /// Retorna todas as categorias existentes no sistema.
         /// </summary>
-        /// <remarks>teste</remarks>
-        /// <response code="200">Categorias retornadas com sucesso</response>
-        /// <response code="500">Não foi possível retonar a categoria no momento, tente novamente mais tarde!</response>
+        /// <remarks>
+        /// Exemplo de requisição:
+        ///
+        ///     GET /RetornaCategorias
+        ///
+        /// </remarks>
+        /// <returns>Uma lista de todas as categorias.</returns>
+        /// <response code="200">Lista de categorias retornada com sucesso.</response>
+        /// <response code="500">Erro interno do servidor.</response>
         [HttpGet("RetornaCategorias")]
+        [ProducesResponseType(typeof(IEnumerable<Categoria>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> RetornaCategorias()
         {
             try
             {
-                // retorna todas as categorias com 200
+                // retorna todas as categorias da base
                 return Ok(await _categoriaService.RetornaCategorias());
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Erro ao obter as categorias");
+                _logger.LogError(ex, Util.MensagensStrings.ErroTentarObterRecurso);
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
 
         /// <summary>
-        /// Retorna uma categoria pelo ID
+        /// Atualiza uma categoria existente no sistema.
         /// </summary>
-        /// <remarks>teste</remarks>
-        /// <response code="200">Categoria retornada atualizada com sucesso!</response>
-        /// <response code="500">Não foi possível atualizar a categoria no momento, tente novamente mais tarde!</response>
+        /// <remarks>
+        /// Exemplo de requisição:
+        ///
+        ///     PUT /AtualizaCategoria
+        ///     {
+        ///         "CategoriaID": "00000000-0000-0000-0000-000000000000",
+        ///         "Nome": "Categoria Atualizada",
+        ///         "Descricao": "Descrição da categoria atualizada."
+        ///     }
+        ///
+        /// </remarks>
+        /// <param name="categoriaSelecionada">Os novos dados da categoria a serem atualizados.</param>
+        /// <returns>A categoria atualizada.</returns>
+        /// <response code="200">Categoria atualizada com sucesso.</response>
+        /// <response code="400">Requisição inválida. Verifique os detalhes da solicitação.</response>
+        /// <response code="404">Recurso não encontrado. A categoria especificada não foi encontrada.</response>
+        /// <response code="500">Erro interno do servidor.</response>
         [HttpPut("AtualizaCategoria")]
+        [ProducesResponseType(typeof(Categoria), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> AtualizaCategoria([FromBody] Categoria categoriaSelecionada)
         {
             try
@@ -131,46 +192,74 @@ namespace ErpStudyWebAPI.Controllers
                 // Realiza a validação do objeto recebido
                 ValidationResult validationResult = await _validator.ValidateAsync(categoriaSelecionada);
 
+                // Caso o objeto não seja valido
                 if (!validationResult.IsValid)
                 {
+                    // retorna um bad request com os erros
                     return BadRequest(validationResult.Errors);
                 }
 
-                // Atualiza a categoria e retorna 200
-                // TODO Aqui acho melhor passar algo para a response, para saber se atualizou ou não localizou
-                await _categoriaService.AtualizarCategoria(categoriaSelecionada);
-                return Ok();
+                // Realiza o update da categoria na base
+                if (await _categoriaService.AtualizarCategoria(categoriaSelecionada))
+                {
+                    // Caso tenha conseguido, atualizar, retorna 200 com a categoria
+                    return Ok(categoriaSelecionada);
+                }
+
+                // Caso não tenha conseguido atualizar, retorna 404 com a mensagem
+                return NotFound(Util.MensagensStrings.RecursoNaoEncontrado);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Erro ao atualizar categoria");
+                _logger.LogError(ex, Util.MensagensStrings.ErroTentarAtualizarRecurso);
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
 
+
         /// <summary>
-        /// Retorna uma categoria pelo ID
+        /// Deleta uma categoria existente no sistema com base no GUID fornecido.
         /// </summary>
-        /// <remarks>teste</remarks>
-        /// <response code="200">Categoria retornada atualizada com sucesso!</response>
-        /// <response code="500">Não foi possível atualizar a categoria no momento, tente novamente mais tarde!</response>
-        [HttpDelete("DeletaCategoria")]
-        public async Task<IActionResult> DeletaCategoria([FromBody] Guid categoriaSelecionadaguidID)
+        /// <remarks>
+        /// Exemplo de requisição:
+        ///
+        ///     DELETE /DeletaCategoria?guidUsuario=00000000-0000-0000-0000-000000000000
+        ///
+        /// </remarks>
+        /// <param name="guidCategoria">O GUID da categoria a ser deletada.</param>
+        /// <returns>Nenhum conteúdo.</returns>
+        /// <response code="204">Categoria deletada com sucesso.</response>
+        /// <response code="400">Requisição inválida. O GUID da categoria não foi fornecido corretamente.</response>
+        /// <response code="404">Recurso não encontrado. A categoria especificada não foi encontrada.</response>
+        /// <response code="500">Erro interno do servidor.</response>
+        [HttpDelete("DeletaCategoria{guidCategoria}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> DeletaCategoria(Guid guidCategoria)
         {
             try
             {
                 // Caso o Guid esteja inválido, retorna um badrequest
-                if (categoriaSelecionadaguidID == Guid.Empty)
+                if (guidCategoria == Guid.Empty)
                 {
-                    return StatusCode(StatusCodes.Status400BadRequest);
+                    return BadRequest(Util.MensagensStrings.RecursoFornecidoForaEsperado);
                 }
 
-                // retorna um 200 com o guid do objeto que foi deletado
-                return Ok(await _categoriaService.DeletarCategoria(categoriaSelecionadaguidID));
+                // Chama o serviço para deletar a categoria
+                if (!await _categoriaService.DeletarCategoria(guidCategoria))
+                {
+                    // Caso não consiga deletar
+                    return NotFound(Util.MensagensStrings.RecursoNaoEncontrado);
+                }
+
+                // Após deletar o usuário, retorna 204
+                return NoContent();
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Erro ao atualizar categoria");
+                _logger.LogError(ex, Util.MensagensStrings.ErroTentarDeletarRecurso);
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }

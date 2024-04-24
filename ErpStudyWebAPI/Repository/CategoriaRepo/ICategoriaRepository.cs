@@ -8,9 +8,9 @@ namespace ErpStudyWebAPI.Repository.CategoriaRepo
     public interface ICategoriaRepository
     {
         Task InsereCategoria(Categoria categoria);
-        Task AtualizaCategoria(Categoria categoria);
+        Task<bool> AtualizaCategoria(Categoria categoria);
         Task<Categoria> RetornaCategoria(Guid guidId);
         Task<List<Categoria>> RetornaCategorias();
-        Task<Guid> DeletaCategoria(Guid guidId);
+        Task<bool> DeletaCategoria(Guid guidId);
     }
 }
