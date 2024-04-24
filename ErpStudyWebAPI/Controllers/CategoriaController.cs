@@ -130,7 +130,6 @@ namespace ErpStudyWebAPI.Controllers
             }
         }
 
-
         /// <summary>
         /// Retorna todas as categorias existentes no sistema.
         /// </summary>
@@ -215,8 +214,7 @@ namespace ErpStudyWebAPI.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
-
-
+        
         /// <summary>
         /// Deleta uma categoria existente no sistema com base no GUID fornecido.
         /// </summary>

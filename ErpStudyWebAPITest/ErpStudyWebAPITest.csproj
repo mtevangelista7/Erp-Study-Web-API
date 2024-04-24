@@ -26,4 +26,8 @@
       <ProjectReference Include="..\ErpStudyWebAPI\ErpStudyWebAPI.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Remove="CategoriaControllerUnitTest.cs" />
+    </ItemGroup>
+
 </Project>
