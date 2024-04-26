@@ -31,6 +31,7 @@ namespace Erp_Study_Web_API_Test.Controllers.CategoriaControllerTests
         {
             // Arrange
             Categoria categoria = new() { Nome = $"Apagar - {DateTime.Now}" };
+            _categoriaServiceMock.Setup(service => service.AdicionarCategoria(categoria));
             CategoriaController controller = new(_loggerMock.Object, _categoriaServiceMock.Object, _validator.Object);
 
             // Act
@@ -48,6 +49,7 @@ namespace Erp_Study_Web_API_Test.Controllers.CategoriaControllerTests
         {
             // Arrange
             Categoria categoria = new(); // tem que ser inválida
+            _categoriaServiceMock.Setup(service => service.AdicionarCategoria(categoria));
             CategoriaController controller = new(_loggerMock.Object, _categoriaServiceMock.Object, _validator.Object);
 
             // Act
@@ -65,10 +67,9 @@ namespace Erp_Study_Web_API_Test.Controllers.CategoriaControllerTests
             // Arrange
             Categoria categoria = new() { Nome = $"Apagar - {DateTime.Now}" };
             const string mensagemErro = Util.MensagensStrings.ErroTentarCadastrarRecurso;
-            Mock<ICategoriaService> categoriaServiceMockAlternative = new();
-            categoriaServiceMockAlternative.Setup(s => s.AdicionarCategoria(categoria))
+            _categoriaServiceMock.Setup(s => s.AdicionarCategoria(categoria))
                 .ThrowsAsync(new Exception(mensagemErro));
-            CategoriaController controller = new(_loggerMock.Object, categoriaServiceMockAlternative.Object,
+            CategoriaController controller = new(_loggerMock.Object, _categoriaServiceMock.Object,
                 _validator.Object);
 
             // Act
