@@ -7,4 +7,28 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Compile Remove="Data\Interfaces\Category.cs" />
+      <Compile Remove="Data\Interfaces\ICategory.cs" />
+      <Compile Remove="Data\Repositories\Interfaces\ICategory.cs" />
+      <Compile Remove="Data\Repositories\Interfaces\Category.cs" />
+      <Compile Remove="Data\Repositories\Interfaces\Category\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ErpStudy.Domain\ErpStudy.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Data\Repositories\Interfaces\Category\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Data\Repositories\Interfaces\Category\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.0" />
+    </ItemGroup>
+
 </Project>

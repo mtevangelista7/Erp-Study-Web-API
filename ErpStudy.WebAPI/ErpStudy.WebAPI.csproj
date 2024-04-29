@@ -11,16 +11,16 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Controllers\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <Compile Remove="Controllers\WeatherForecastController.cs" />
       <Compile Remove="WeatherForecast.cs" />
     </ItemGroup>
 
     <ItemGroup>
       <None Remove="ErpStudy.WebAPI.http" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ErpStudy.Application\ErpStudy.Application.csproj" />
     </ItemGroup>
 
 </Project>
