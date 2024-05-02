@@ -1,4 +1,7 @@
-﻿namespace ErpStudy.Application.Interfaces.UsesCases;
+﻿using ErpStudy.Domain.Entities;
+using FluentResults;
+
+namespace ErpStudy.Application.Interfaces.UsesCases;
 
 public interface IUseCase<TRequest, TResponse>
 {

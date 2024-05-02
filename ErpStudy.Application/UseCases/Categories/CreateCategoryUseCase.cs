@@ -13,7 +13,7 @@ namespace ErpStudy.Application.UseCases.Categories
     public class CreateCategoryUseCase(ICategoryRepository categoryRepository)
         : IUseCase<CreateCategoryDTO, Result<Category>>
     {
-        public async Task<Result<Category?>> ExecuteAsync(CreateCategoryDTO request)
+        public async Task<Result<Category>> ExecuteAsync(CreateCategoryDTO request)
         {
             try
             {
@@ -35,7 +35,7 @@ namespace ErpStudy.Application.UseCases.Categories
                 var category = await categoryRepository.CreateCategoryAsync(newCategory);
 
                 // retorna ok com o objeto criado
-                return Result.Ok(category);
+                return Result.Ok(category)!;
             }
             catch (Exception ex)
             {

@@ -1,7 +1,7 @@
 ﻿using Bogus;
 using ErpStudy.Domain.Entities;
 
-namespace ErpStudy.Domain.Tests.Builders.Categories
+namespace ErpStudy.Application.Tests.Builders.Categories
 {
     public class CategoryBuilder
     {

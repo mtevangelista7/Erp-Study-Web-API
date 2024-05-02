@@ -21,7 +21,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="ControllersTests\" />
+      <ProjectReference Include="..\ErpStudy.Application.Tests\ErpStudy.Application.Tests.csproj" />
+      <ProjectReference Include="..\ErpStudy.WebAPI\ErpStudy.WebAPI.csproj" />
     </ItemGroup>
 
 </Project>

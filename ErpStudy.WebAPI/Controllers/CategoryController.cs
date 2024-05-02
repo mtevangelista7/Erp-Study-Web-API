@@ -18,7 +18,7 @@ namespace ErpStudy.WebAPI.Controllers
     public class CategoryController(
         IUseCase<CreateCategoryDTO, Result<Category>> createCategoryUseCase,
         IUseCase<DeleteCategoryDTO, Result<Category>> deleteCategoryUseCase,
-        IUseCase<GetAllCategoriesDTO, Result<Category>> getAllCategoriesUseCase,
+        IUseCase<GetAllCategoriesDTO, Result<List<Category>>> getAllCategoriesUseCase,
         IUseCase<GetCategoryByIdDTO, Result<Category>> getCategoryByIdUseCase,
         IUseCase<UpdateCategoryDTO, Result<Category>> updateCategoryUseCase,
         ILogger<CategoryController> logger
@@ -223,7 +223,7 @@ namespace ErpStudy.WebAPI.Controllers
                 {
                     return NoContent();
                 }
-                
+
                 return NotFound(result.Errors);
             }
             catch (Exception ex)

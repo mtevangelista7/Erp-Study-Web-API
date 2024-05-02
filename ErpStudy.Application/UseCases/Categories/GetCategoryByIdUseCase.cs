@@ -18,7 +18,7 @@ namespace ErpStudy.Application.UseCases.Categories
             _categoryRepository = categoryRepository;
         }
 
-        public async Task<Result<Category?>> ExecuteAsync(GetCategoryByIdDTO request)
+        public async Task<Result<Category>> ExecuteAsync(GetCategoryByIdDTO request)
         {
             try
             {
@@ -27,7 +27,7 @@ namespace ErpStudy.Application.UseCases.Categories
                 if (validationResult.IsValid)
                 {
                     // busca a categoria na base pelo ID
-                    return Result.Ok(await _categoryRepository.GetCategoryByIdAsync(request.Id));
+                    return Result.Ok(await _categoryRepository.GetCategoryByIdAsync(request.Id))!;
                 }
 
                 IEnumerable<string> err = validationResult.Errors.Select(e => e.ErrorMessage);
