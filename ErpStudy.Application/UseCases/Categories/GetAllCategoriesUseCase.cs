@@ -2,7 +2,7 @@
 using ErpStudy.Application.DTOs.Categories;
 using ErpStudy.Application.Interfaces.UsesCases;
 using ErpStudy.Domain.Entities;
-using ErpStudy.Infrastructure.Data.Repositories.Interfaces;
+using ErpStudy.Infrastructure.Data.Interfaces;
 using FluentResults;
 
 namespace ErpStudy.Application.UseCases.Categories

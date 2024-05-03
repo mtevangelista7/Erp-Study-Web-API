@@ -2,7 +2,7 @@
 using ErpStudy.Application.Tests.Builders.Categories;
 using ErpStudy.Application.UseCases.Categories;
 using ErpStudy.Domain.Entities;
-using ErpStudy.Infrastructure.Data.Repositories.Interfaces;
+using ErpStudy.Infrastructure.Data.Interfaces;
 using Moq;
 
 namespace ErpStudy.Application.Tests.Unit.Categories.UseCases

@@ -4,7 +4,7 @@ using ErpStudy.Application.Interfaces.UsesCases;
 using ErpStudy.Application.Validator;
 using ErpStudy.Application.Validator.CategoryDTOValidator;
 using ErpStudy.Domain.Entities;
-using ErpStudy.Infrastructure.Data.Repositories.Interfaces;
+using ErpStudy.Infrastructure.Data.Interfaces;
 using FluentResults;
 using FluentValidation.Results;
 

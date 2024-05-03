@@ -1,3 +1,4 @@
+using ErpStudy.WebAPI;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -13,51 +14,52 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1",
         new OpenApiInfo { Title = "ErpStudyWebAPI", Version = "v1" });
 
-    // Aqui é onde definimos a documentação que permite ao usuário, enviar o token bearer para o endpoint 
+    // Aqui ï¿½ onde definimos a documentaï¿½ï¿½o que permite ao usuï¿½rio, enviar o token bearer para o endpoint 
     c.AddSecurityDefinition("Bearer",
         new OpenApiSecurityScheme
         {
             In = ParameterLocation.Header,
-            Description = "Por favor, digite um token válido",
+            Description = "Por favor, digite um token vï¿½lido",
             Name = "Authorization",
             Type = SecuritySchemeType.ApiKey,
             BearerFormat = "JWT",
             Scheme = "Bearer"
         });
     c.AddSecurityRequirement(new OpenApiSecurityRequirement
-                {
-                    {
-                        new OpenApiSecurityScheme
-                        {
-                            Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
-                        },
-                        new string[] { }
-                    }
-                });
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
+            },
+            new string[] { }
+        }
+    });
 
     string directory = AppDomain.CurrentDomain.BaseDirectory;
     string filePath = Path.Combine(directory, "ErpStudy.WebAPI.xml");
     c.IncludeXmlComments(filePath);
 });
 
-
-// Aqui definimos como irá funcionar nossa autenticação com o JWT
+// Aqui definimos como irï¿½ funcionar nossa autenticaï¿½ï¿½o com o JWT
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
     options.RequireHttpsMetadata = false;
     options.SaveToken = false; // TODO verificar como isso funciona
 
-    // Setamos nossas opções de validação do token
+    // Setamos nossas opï¿½ï¿½es de validaï¿½ï¿½o do token
     options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuerSigningKey = true,
-        // Aqui definimos onde e como deve ser nossa chave de criptografia (igual ao método que cria token)
+        // Aqui definimos onde e como deve ser nossa chave de criptografia (igual ao mï¿½todo que cria token)
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII
             .GetBytes(builder.Configuration.GetSection("AppSettings:Token").Value)),
         ValidateIssuer = false,
         ValidateAudience = false
     };
 });
+
+builder.Services.AddCategoryUseCases();
 
 var app = builder.Build();
 

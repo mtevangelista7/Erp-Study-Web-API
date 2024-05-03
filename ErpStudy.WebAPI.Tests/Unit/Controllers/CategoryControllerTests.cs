@@ -2,7 +2,6 @@
 using ErpStudy.Application.Help;
 using ErpStudy.Application.Interfaces.UsesCases;
 using ErpStudy.Application.Tests.Builders.Categories;
-using ErpStudy.Application.UseCases.Categories;
 using ErpStudy.Domain.Entities;
 using ErpStudy.WebAPI.Controllers;
 using FluentResults;
@@ -10,7 +9,6 @@ using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Tokens;
 using Moq;
 using ValidationFailure = FluentValidation.Results.ValidationFailure;
 
@@ -224,9 +222,9 @@ namespace ErpStudy.WebAPI.Tests.Unit.Controllers
                 new Result<Category> { });
 
             CategoryController categoryController =
-    new(createCategoryUseCase.Object, deleteCategoryUseCase.Object, getAllCategoriesUseCase.Object,
-        getCategoryByIdUseCase.Object,
-        updateCategoryUseCase.Object, logger.Object);
+                new(createCategoryUseCase.Object, deleteCategoryUseCase.Object, getAllCategoriesUseCase.Object,
+                    getCategoryByIdUseCase.Object,
+                    updateCategoryUseCase.Object, logger.Object);
 
 
             // Act
@@ -242,16 +240,20 @@ namespace ErpStudy.WebAPI.Tests.Unit.Controllers
         {
             // Arrange
             var category = UpdateCategoryDTOBuilder.CreateFake();
-            var validationResult = new ValidationResult(new List<ValidationFailure> { new ValidationFailure("propertyName", "errorMessage") });
+            var validationResult =
+                new ValidationResult(new List<ValidationFailure>
+                {
+                    new ValidationFailure("propertyName", "errorMessage")
+                });
 
             // Mock validation failure
             var validatorMock = new Mock<IValidator<UpdateCategoryDTO>>();
             validatorMock.Setup(x => x.ValidateAsync(category, default)).ReturnsAsync(validationResult);
 
             CategoryController categoryController =
-new(createCategoryUseCase.Object, deleteCategoryUseCase.Object, getAllCategoriesUseCase.Object,
-getCategoryByIdUseCase.Object,
-updateCategoryUseCase.Object, logger.Object);
+                new(createCategoryUseCase.Object, deleteCategoryUseCase.Object, getAllCategoriesUseCase.Object,
+                    getCategoryByIdUseCase.Object,
+                    updateCategoryUseCase.Object, logger.Object);
 
             // Act
             var result = await categoryController.UpdateCategory(category);
@@ -272,9 +274,9 @@ updateCategoryUseCase.Object, logger.Object);
 
 
             CategoryController categoryController =
-new(createCategoryUseCase.Object, deleteCategoryUseCase.Object, getAllCategoriesUseCase.Object,
-getCategoryByIdUseCase.Object,
-updateCategoryUseCase.Object, logger.Object);
+                new(createCategoryUseCase.Object, deleteCategoryUseCase.Object, getAllCategoriesUseCase.Object,
+                    getCategoryByIdUseCase.Object,
+                    updateCategoryUseCase.Object, logger.Object);
 
             // Act
             var result = await categoryController.UpdateCategory(category);
@@ -292,9 +294,9 @@ updateCategoryUseCase.Object, logger.Object);
             updateCategoryUseCase.Setup(x => x.ExecuteAsync(category)).ThrowsAsync(new Exception("Some exception"));
 
             CategoryController categoryController =
-new(createCategoryUseCase.Object, deleteCategoryUseCase.Object, getAllCategoriesUseCase.Object,
-getCategoryByIdUseCase.Object,
-updateCategoryUseCase.Object, logger.Object);
+                new(createCategoryUseCase.Object, deleteCategoryUseCase.Object, getAllCategoriesUseCase.Object,
+                    getCategoryByIdUseCase.Object,
+                    updateCategoryUseCase.Object, logger.Object);
 
             // Act
             var result = await categoryController.UpdateCategory(category);
@@ -318,9 +320,9 @@ updateCategoryUseCase.Object, logger.Object);
             deleteCategoryUseCase.Setup(useCase => useCase.ExecuteAsync(id)).ReturnsAsync(successfulResult);
 
             CategoryController categoryController =
-new(createCategoryUseCase.Object, deleteCategoryUseCase.Object, getAllCategoriesUseCase.Object,
-getCategoryByIdUseCase.Object,
-updateCategoryUseCase.Object, logger.Object);
+                new(createCategoryUseCase.Object, deleteCategoryUseCase.Object, getAllCategoriesUseCase.Object,
+                    getCategoryByIdUseCase.Object,
+                    updateCategoryUseCase.Object, logger.Object);
 
             // Act
             var result = await categoryController.DeleteCategory(id);
@@ -335,16 +337,20 @@ updateCategoryUseCase.Object, logger.Object);
         {
             // Arrange
             var id = DeleteCategoryDTOBuilder.CreateFake();
-            var validationResult = new ValidationResult(new List<ValidationFailure> { new ValidationFailure("propertyName", "errorMessage") });
+            var validationResult =
+                new ValidationResult(new List<ValidationFailure>
+                {
+                    new ValidationFailure("propertyName", "errorMessage")
+                });
 
             // Mock validation failure
             var validatorMock = new Mock<IValidator<DeleteCategoryDTO>>();
             validatorMock.Setup(x => x.ValidateAsync(id, default)).ReturnsAsync(validationResult);
 
             CategoryController categoryController =
-new(createCategoryUseCase.Object, deleteCategoryUseCase.Object, getAllCategoriesUseCase.Object,
-getCategoryByIdUseCase.Object,
-updateCategoryUseCase.Object, logger.Object);
+                new(createCategoryUseCase.Object, deleteCategoryUseCase.Object, getAllCategoriesUseCase.Object,
+                    getCategoryByIdUseCase.Object,
+                    updateCategoryUseCase.Object, logger.Object);
 
             // Act
             var result = await categoryController.DeleteCategory(id);
@@ -364,9 +370,9 @@ updateCategoryUseCase.Object, logger.Object);
             deleteCategoryUseCase.Setup(x => x.ExecuteAsync(id)).ReturnsAsync(failedResult);
 
             CategoryController categoryController =
-new(createCategoryUseCase.Object, deleteCategoryUseCase.Object, getAllCategoriesUseCase.Object,
-getCategoryByIdUseCase.Object,
-updateCategoryUseCase.Object, logger.Object);
+                new(createCategoryUseCase.Object, deleteCategoryUseCase.Object, getAllCategoriesUseCase.Object,
+                    getCategoryByIdUseCase.Object,
+                    updateCategoryUseCase.Object, logger.Object);
 
             // Act
             var result = await categoryController.DeleteCategory(id);
@@ -384,9 +390,9 @@ updateCategoryUseCase.Object, logger.Object);
             deleteCategoryUseCase.Setup(x => x.ExecuteAsync(id)).ThrowsAsync(new Exception("Some exception"));
 
             CategoryController categoryController =
-new(createCategoryUseCase.Object, deleteCategoryUseCase.Object, getAllCategoriesUseCase.Object,
-getCategoryByIdUseCase.Object,
-updateCategoryUseCase.Object, logger.Object);
+                new(createCategoryUseCase.Object, deleteCategoryUseCase.Object, getAllCategoriesUseCase.Object,
+                    getCategoryByIdUseCase.Object,
+                    updateCategoryUseCase.Object, logger.Object);
 
             // Act
             var result = await categoryController.DeleteCategory(id);

@@ -1,8 +1,6 @@
-﻿using ErpStudy.Application.DTOs;
-using ErpStudy.Application.DTOs.Categories;
+﻿using ErpStudy.Application.DTOs.Categories;
 using ErpStudy.Application.Help;
 using ErpStudy.Application.Interfaces.UsesCases;
-using ErpStudy.Application.UseCases.Categories;
 using ErpStudy.Application.Validator.CategoryDTOValidator;
 using ErpStudy.Domain.Entities;
 using FluentResults;
@@ -12,6 +10,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ErpStudy.WebAPI.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="createCategoryUseCase"></param>
+    /// <param name="deleteCategoryUseCase"></param>
+    /// <param name="getAllCategoriesUseCase"></param>
+    /// <param name="getCategoryByIdUseCase"></param>
+    /// <param name="updateCategoryUseCase"></param>
+    /// <param name="logger"></param>
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
@@ -81,7 +88,7 @@ namespace ErpStudy.WebAPI.Controllers
         /// <response code="400">Requisição inválida. O GUID da categoria não foi fornecido corretamente.</response>
         /// <response code="404">Recurso não encontrado. A categoria especificada não foi encontrada.</response>
         /// <response code="500">Erro interno do servidor.</response>
-        [HttpPost("GetCategoryById{id:guid}")]
+        [HttpPost("GetCategoryById{id:id}")]
         [ProducesResponseType(typeof(GetCategoryByIdDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -125,7 +132,7 @@ namespace ErpStudy.WebAPI.Controllers
         {
             try
             {
-                return Ok(await getAllCategoriesUseCase.ExecuteAsync(null));
+                return Ok(await getAllCategoriesUseCase.ExecuteAsync(null!));
             }
             catch (Exception ex)
             {
