@@ -2,12 +2,7 @@
 
 namespace ErpStudy.Infrastructure.Data.Interfaces
 {
-    public interface IUserRepository
+    public interface IUserRepository : IRepository<User>
     {
-        Task<User?> CreateUserAsync(User user);
-        Task<bool> UpdateUserAsync(User user);
-        Task<User?> GetUserByIdAsync(Guid id);
-        Task<List<User>> GetAllUsersAsync();
-        Task<bool> DeleteUserAsync(Guid id);
     }
 }

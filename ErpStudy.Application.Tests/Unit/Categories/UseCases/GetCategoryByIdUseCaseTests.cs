@@ -16,7 +16,7 @@ namespace ErpStudy.Application.Tests.Unit.Categories.UseCases
             var validRequest = new GetCategoryByIdDTOBuilder().Build();
             var category = new Category();
             var mockRepository = new Mock<ICategoryRepository>();
-            mockRepository.Setup(repo => repo.GetCategoryByIdAsync(It.IsAny<Guid>())).ReturnsAsync(category);
+            mockRepository.Setup(repo => repo.GetById(It.IsAny<Guid>())).ReturnsAsync(category);
 
             var useCase = new GetCategoryByIdUseCase(mockRepository.Object);
 
@@ -53,7 +53,7 @@ namespace ErpStudy.Application.Tests.Unit.Categories.UseCases
             // Arrange
             var validRequest = new GetCategoryByIdDTOBuilder().Build();
             var mockRepository = new Mock<ICategoryRepository>();
-            mockRepository.Setup(repo => repo.GetCategoryByIdAsync(It.IsAny<Guid>()))
+            mockRepository.Setup(repo => repo.GetById(It.IsAny<Guid>()))
                 .ThrowsAsync(new Exception("Repository Error"));
 
             var useCase = new GetCategoryByIdUseCase(mockRepository.Object);

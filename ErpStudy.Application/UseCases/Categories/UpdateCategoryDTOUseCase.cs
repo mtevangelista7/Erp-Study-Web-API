@@ -9,15 +9,15 @@ using FluentValidation.Results;
 
 namespace ErpStudy.Application.UseCases.Categories
 {
-    public class UpdateCategoryDTOUseCase : IUseCase<UpdateCategoryDTO, Result<Category>>
+    public class UpdateCategoryDTOUseCase : IUpdateCategoryDTOUseCase
     {
         private readonly ICategoryRepository _categoryRepository;
-        
+
         public UpdateCategoryDTOUseCase(ICategoryRepository categoryRepository)
         {
             _categoryRepository = categoryRepository;
         }
-        
+
         public async Task<Result<Category>> ExecuteAsync(UpdateCategoryDTO request)
         {
             ValidationResult validationResult = await new UpdateCategoryDTOValidator().ValidateAsync(request);
@@ -27,9 +27,9 @@ namespace ErpStudy.Application.UseCases.Categories
                 var err = validationResult.Errors.Select(e => e.ErrorMessage);
                 return Result.Fail(err);
             }
-            
+
             // realiza a busca da categoria na base antes de tentar atualizar
-            Category? category = await _categoryRepository.GetCategoryByIdAsync(request.Id);
+            Category? category = await _categoryRepository.GetById(request.Id);
 
             if (category is null)
             {
@@ -39,9 +39,9 @@ namespace ErpStudy.Application.UseCases.Categories
 
             // Cria a nova categoria com os novos dados
             Category newCategory = new() { Name = request.Name ?? category.Name };
-            
+
             // Atualiza e retorna ok
-            await _categoryRepository.UpdateCategoryAsync(newCategory);
+            await _categoryRepository.Update(newCategory);
             return Result.Ok();
         }
     }

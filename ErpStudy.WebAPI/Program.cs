@@ -60,6 +60,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 });
 
 builder.Services.AddCategoryUseCases();
+builder.Services.AddRepositories();
 
 var app = builder.Build();
 

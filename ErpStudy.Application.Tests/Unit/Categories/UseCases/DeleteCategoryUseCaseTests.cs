@@ -14,7 +14,7 @@ namespace ErpStudy.Application.Tests.Unit.Categories.UseCases
             // Arrange
             var validRequest = DeleteCategoryDTOBuilder.CreateFake();
             var mockRepository = new Mock<ICategoryRepository>();
-            mockRepository.Setup(repo => repo.DeleteCategoryAsync(It.IsAny<Guid>())).ReturnsAsync(true);
+            mockRepository.Setup(repo => repo.Delete(It.IsAny<Guid>()));
 
             var useCase = new DeleteCategoryUseCase(mockRepository.Object);
 
@@ -49,7 +49,7 @@ namespace ErpStudy.Application.Tests.Unit.Categories.UseCases
             // Arrange
             var validRequest = DeleteCategoryDTOBuilder.CreateFake();
             var mockRepository = new Mock<ICategoryRepository>();
-            mockRepository.Setup(repo => repo.DeleteCategoryAsync(It.IsAny<Guid>()))
+            mockRepository.Setup(repo => repo.Delete(It.IsAny<Guid>()))
                 .ThrowsAsync(new Exception("Repository Error"));
 
             var useCase = new DeleteCategoryUseCase(mockRepository.Object);

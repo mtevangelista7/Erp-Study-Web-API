@@ -17,7 +17,7 @@ namespace ErpStudy.Application.Tests.Unit.Categories.UseCases
             CreateCategoryDTO validRequest = CreateCategoryDTOBuilder.CreateFake();
 
             Mock<ICategoryRepository> mockRepository = new();
-            mockRepository.Setup(repo => repo.CreateCategoryAsync(It.IsAny<Category>())).ReturnsAsync(new Category());
+            mockRepository.Setup(repo => repo.Add(It.IsAny<Category>())).ReturnsAsync(new Category());
 
             CreateCategoryUseCase useCase = new(mockRepository.Object);
 
@@ -54,7 +54,7 @@ namespace ErpStudy.Application.Tests.Unit.Categories.UseCases
             // Arrange
             CreateCategoryDTO validRequest = CreateCategoryDTOBuilder.CreateFake();
             Mock<ICategoryRepository> mockRepository = new();
-            mockRepository.Setup(repo => repo.CreateCategoryAsync(It.IsAny<Category>()))
+            mockRepository.Setup(repo => repo.Add(It.IsAny<Category>()))
                 .ThrowsAsync(new Exception("Repository Error"));
 
             CreateCategoryUseCase useCase = new(mockRepository.Object);

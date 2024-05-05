@@ -15,8 +15,8 @@ namespace ErpStudy.Application.Tests.Unit.Categories.UseCases
             var validRequest = UpdateCategoryDTOBuilder.CreateFake();
             var category = new Category();
             var mockRepository = new Mock<ICategoryRepository>();
-            mockRepository.Setup(repo => repo.GetCategoryByIdAsync(It.IsAny<Guid>())).ReturnsAsync(category);
-            mockRepository.Setup(repo => repo.UpdateCategoryAsync(It.IsAny<Category>())).Returns((Task<bool>)Task.CompletedTask);
+            mockRepository.Setup(repo => repo.GetById(It.IsAny<Guid>())).ReturnsAsync(category);
+            mockRepository.Setup(repo => repo.Update(It.IsAny<Category>())).ReturnsAsync(category);
 
             var useCase = new UpdateCategoryDTOUseCase(mockRepository.Object);
 
@@ -51,7 +51,7 @@ namespace ErpStudy.Application.Tests.Unit.Categories.UseCases
             // Arrange
             var validRequest = UpdateCategoryDTOBuilder.CreateFake();
             var mockRepository = new Mock<ICategoryRepository>();
-            mockRepository.Setup(repo => repo.GetCategoryByIdAsync(It.IsAny<Guid>())).ReturnsAsync((Category)null);
+            mockRepository.Setup(repo => repo.GetById(It.IsAny<Guid>())).ReturnsAsync((Category)null);
 
             var useCase = new UpdateCategoryDTOUseCase(mockRepository.Object);
 

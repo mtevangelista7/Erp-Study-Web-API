@@ -1,4 +1,5 @@
 ﻿using ErpStudy.Domain.Entities;
+using ErpStudy.Infrastructure.Data.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -15,7 +16,7 @@ namespace ErpStudy.Infrastructure.Data.Context
                 .AddJsonFile("appsettings.json")
                 .Build();
 
-            _connectionString = configuration.GetConnectionString("DefaultConnection");
+            _connectionString = configuration.GetConnectionString("DefaultConnection")!;
         }
 
         public AplicationDbContext(string connectionString)
@@ -33,6 +34,15 @@ namespace ErpStudy.Infrastructure.Data.Context
             {
                 optionsBuilder.UseSqlServer(_connectionString);
             }
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.ApplyConfiguration(new CategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductConfiguration());
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
         }
     }
 }

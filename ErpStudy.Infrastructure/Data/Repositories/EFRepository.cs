@@ -16,20 +16,21 @@ namespace ErpStudy.Infrastructure.Data.Repositories
             _dbSet = _context.Set<T>();
         }
 
-        public async Task<IList<T>> GetAll()
+        public async Task<List<T>> GetAll()
         {
             return await _dbSet.AsNoTracking().ToListAsync();
         }
 
         public async Task<T> GetById(Guid id)
         {
-            return await _dbSet.FirstOrDefaultAsync(x => x.Id == id);
+            return await _dbSet.FirstOrDefaultAsync(x => x.Id == id) ?? throw new Exception("Entity not found");
         }
 
-        public async Task Add(T entity)
+        public async Task<T> Add(T entity)
         {
             await _dbSet.AddAsync(entity);
             await _context.SaveChangesAsync();
+            return entity;
         }
 
         public async Task<T> Update(T entity)
