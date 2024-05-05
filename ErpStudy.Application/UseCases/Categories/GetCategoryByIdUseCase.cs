@@ -9,7 +9,7 @@ using FluentValidation.Results;
 
 namespace ErpStudy.Application.UseCases.Categories
 {
-    public class GetCategoryByIdUseCase : IUseCase<GetCategoryByIdDTO, Result<Category>>
+    public class GetCategoryByIdUseCase : IGetCategoryByIdUseCase
     {
         private readonly ICategoryRepository _categoryRepository;
 
@@ -27,7 +27,7 @@ namespace ErpStudy.Application.UseCases.Categories
                 if (validationResult.IsValid)
                 {
                     // busca a categoria na base pelo ID
-                    return Result.Ok(await _categoryRepository.GetCategoryByIdAsync(request.Id))!;
+                    return Result.Ok(await _categoryRepository.GetById(request.Id))!;
                 }
 
                 IEnumerable<string> err = validationResult.Errors.Select(e => e.ErrorMessage);

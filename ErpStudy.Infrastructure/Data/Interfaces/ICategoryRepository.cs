@@ -2,11 +2,6 @@
 
 namespace ErpStudy.Infrastructure.Data.Interfaces;
 
-public interface ICategoryRepository
+public interface ICategoryRepository : IRepository<Category>
 {
-    Task<Category?> CreateCategoryAsync(Category category);
-    Task<bool> UpdateCategoryAsync(Category category);
-    Task<Category?> GetCategoryByIdAsync(Guid id);
-    Task<List<Category>> GetAllCategoriesAsync();
-    Task<bool> DeleteCategoryAsync(Guid id);
 }

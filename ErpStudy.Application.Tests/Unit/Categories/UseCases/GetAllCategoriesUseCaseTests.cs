@@ -13,7 +13,7 @@ namespace ErpStudy.Application.Tests.Unit.Categories.UseCases
             // Arrange
             var categories = new List<Category> { new(), new() };
             var mockRepository = new Mock<ICategoryRepository>();
-            mockRepository.Setup(repo => repo.GetAllCategoriesAsync()).ReturnsAsync(categories);
+            mockRepository.Setup(repo => repo.GetAll()).ReturnsAsync(categories);
 
             var useCase = new GetAllCategoriesUseCase(mockRepository.Object);
 

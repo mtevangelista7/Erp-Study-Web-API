@@ -1,8 +1,8 @@
 ﻿namespace ErpStudy.Domain.Entities
 {
-    public class Category
+    public class Category : EntityBase
     {
-        public Guid Id { get; set; }
         public string Name { get; set; }
+        public List<Product> Products { get; set; }
     }
 }

@@ -1,15 +1,13 @@
-﻿using ErpStudy.Application.DTOs;
-using ErpStudy.Application.DTOs.Categories;
+﻿using ErpStudy.Application.DTOs.Categories;
 using ErpStudy.Application.Interfaces.UsesCases;
 using ErpStudy.Application.Validator.CategoryDTOValidator;
-using ErpStudy.Domain.Entities;
 using ErpStudy.Infrastructure.Data.Interfaces;
 using FluentResults;
 using FluentValidation.Results;
 
 namespace ErpStudy.Application.UseCases.Categories
 {
-    public class DeleteCategoryUseCase(ICategoryRepository categoryRepository) : IUseCase<DeleteCategoryDTO, Result>
+    public class DeleteCategoryUseCase(ICategoryRepository categoryRepository) : IDeleteCategoryUseCase
     {
         public async Task<Result> ExecuteAsync(DeleteCategoryDTO request)
         {
@@ -24,13 +22,9 @@ namespace ErpStudy.Application.UseCases.Categories
                 }
 
                 // chama o caso de para realizar a exlusão do categoria
-                if (await categoryRepository.DeleteCategoryAsync(request.Id))
-                {
-                    return Result.Ok();
-                }
+                await categoryRepository.Delete(request.Id);
 
-                // TODO: Adicionar alguma mensagem ou ver outra forma de sinalizar que não conseguiu excluir
-                return Result.Fail("");
+                return Result.Ok();
             }
             catch (Exception ex)
             {

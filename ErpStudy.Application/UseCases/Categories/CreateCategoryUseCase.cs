@@ -11,7 +11,7 @@ using FluentValidation.Results;
 namespace ErpStudy.Application.UseCases.Categories
 {
     public class CreateCategoryUseCase(ICategoryRepository categoryRepository)
-        : IUseCase<CreateCategoryDTO, Result<Category>>
+        : ICreateCategoryUseCase
     {
         public async Task<Result<Category>> ExecuteAsync(CreateCategoryDTO request)
         {
@@ -32,7 +32,7 @@ namespace ErpStudy.Application.UseCases.Categories
                 var newCategory = new Category() { Name = request.Name };
 
                 // chama o repository que registra a categoria no banco
-                var category = await categoryRepository.CreateCategoryAsync(newCategory);
+                var category = await categoryRepository.Add(newCategory);
 
                 // retorna ok com o objeto criado
                 return Result.Ok(category)!;
