@@ -1,4 +1,5 @@
-﻿using ErpStudy.Domain.Entities;
+﻿
+using ErpStudy.Domain.Entities;
 
 namespace ErpStudy.Infrastructure.Data.Interfaces
 {

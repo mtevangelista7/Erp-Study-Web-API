@@ -11,12 +11,6 @@ namespace ErpStudy.Infrastructure.Data.Configurations
             builder.ToTable("Product");
             builder.HasKey(c => c.Id);
 
-            builder.HasOne<Category>(e => e.Category)
-                .WithMany()
-                .HasForeignKey(e => e.CategoryId)
-                .IsRequired()
-                .OnDelete(DeleteBehavior.Cascade);
-
             builder.Property(p => p.Name)
                 .HasColumnName("Name")
                 .HasColumnType("NVARCHAR(250)")
@@ -39,13 +33,8 @@ namespace ErpStudy.Infrastructure.Data.Configurations
                 .IsRequired();
 
             builder.Property(p => p.Condition)
-                .HasColumnName("Unity")
+                .HasColumnName("Condition")
                 .HasColumnType("INT")
-                .IsRequired();
-
-            builder.Property(p => p.CategoryId)
-                .HasColumnName("CategoryId")
-                .HasColumnType("UNIQUEIDENTIFIER")
                 .IsRequired();
 
             builder.HasIndex(p => p.SKUCode);

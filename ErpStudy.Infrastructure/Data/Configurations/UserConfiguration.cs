@@ -23,7 +23,7 @@ namespace ErpStudy.Infrastructure.Data.Configurations
                 .IsRequired();
 
             builder.Property(c => c.PasswordSalt)
-                .HasColumnName("PasswordHash")
+                .HasColumnName("PasswordSalt")
                 .HasColumnType("VARBINARY(MAX)")
                 .IsRequired();
 

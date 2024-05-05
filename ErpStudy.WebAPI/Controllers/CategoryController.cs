@@ -1,6 +1,7 @@
 ﻿using ErpStudy.Application.DTOs.Categories;
 using ErpStudy.Application.Help;
-using ErpStudy.Application.Interfaces.UsesCases;
+using ErpStudy.Application.Interfaces.UsesCases.Categories;
+using ErpStudy.Application.UseCases.Categories;
 using ErpStudy.Application.Validator.CategoryDTOValidator;
 using ErpStudy.Domain.Entities;
 using FluentResults;
@@ -22,15 +23,15 @@ namespace ErpStudy.WebAPI.Controllers
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoryController(
-        IUseCase<CreateCategoryDTO, Result<Category>> createCategoryUseCase,
-        IUseCase<DeleteCategoryDTO, Result<Category>> deleteCategoryUseCase,
-        IUseCase<GetAllCategoriesDTO, Result<List<Category>>> getAllCategoriesUseCase,
-        IUseCase<GetCategoryByIdDTO, Result<Category>> getCategoryByIdUseCase,
-        IUseCase<UpdateCategoryDTO, Result<Category>> updateCategoryUseCase,
-        ILogger<CategoryController> logger
-    ) : ControllerBase
+    public class CategoryController: ControllerBase
     {
+        private readonly ILogger<CategoryController> _logger;
+
+        public CategoryController(ILogger<CategoryController> logger)
+        {
+            _logger = logger;
+        }
+
         /// <summary>
         /// Adiciona uma nova categoria ao sistema.
         /// </summary>
@@ -39,8 +40,7 @@ namespace ErpStudy.WebAPI.Controllers
         ///
         ///     POST /api/category/AddCategory
         ///     {
-        ///         "Nome": "Nova Categoria",
-        ///         "Descricao": "Descrição da nova categoria."
+        ///         "Name": "Nova Categoria"
         ///     }
         ///
         /// </remarks>
@@ -49,11 +49,12 @@ namespace ErpStudy.WebAPI.Controllers
         /// <response code="201">Categoria adicionada com sucesso.</response>
         /// <response code="400">Requisição inválida. Verifique os detalhes da solicitação.</response>
         /// <response code="500">Erro interno do servidor.</response>
+        [AllowAnonymous]
         [HttpPost("AddCategory")]
         [ProducesResponseType(typeof(CreateCategoryDTO), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> AddCategory([FromBody] CreateCategoryDTO category)
+        public async Task<IActionResult> AddCategory([FromBody] CreateCategoryDTO category, ICreateCategoryUseCase createCategoryUseCase)
         {
             try
             {
@@ -68,7 +69,7 @@ namespace ErpStudy.WebAPI.Controllers
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, Helper.MessageInfo.ErroTentarCadastrarRecurso);
+                _logger.LogError(ex, Helper.MessageInfo.ErroTentarCadastrarRecurso);
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
@@ -88,12 +89,12 @@ namespace ErpStudy.WebAPI.Controllers
         /// <response code="400">Requisição inválida. O GUID da categoria não foi fornecido corretamente.</response>
         /// <response code="404">Recurso não encontrado. A categoria especificada não foi encontrada.</response>
         /// <response code="500">Erro interno do servidor.</response>
-        [HttpPost("GetCategoryById{id:id}")]
+        [HttpPost("GetCategoryById{id}")]
         [ProducesResponseType(typeof(GetCategoryByIdDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetCategoryById(GetCategoryByIdDTO id)
+        public async Task<IActionResult> GetCategoryById(GetCategoryByIdDTO id, IGetCategoryByIdUseCase getCategoryByIdUseCase)
         {
             try
             {
@@ -108,7 +109,7 @@ namespace ErpStudy.WebAPI.Controllers
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, Helper.MessageInfo.ErroTentarObterRecurso);
+                _logger.LogError(ex, Helper.MessageInfo.ErroTentarObterRecurso);
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
@@ -128,7 +129,7 @@ namespace ErpStudy.WebAPI.Controllers
         [HttpGet("GetAllCategories")]
         [ProducesResponseType(typeof(IEnumerable<Category>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetAllCategories()
+        public async Task<IActionResult> GetAllCategories(IGetAllCategoriesUseCase getAllCategoriesUseCase)
         {
             try
             {
@@ -136,7 +137,7 @@ namespace ErpStudy.WebAPI.Controllers
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, Helper.MessageInfo.ErroTentarObterRecurso);
+                _logger.LogError(ex, Helper.MessageInfo.ErroTentarObterRecurso);
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
@@ -166,7 +167,7 @@ namespace ErpStudy.WebAPI.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> UpdateCategory([FromBody] UpdateCategoryDTO category)
+        public async Task<IActionResult> UpdateCategory([FromBody] UpdateCategoryDTO category, IUpdateCategoryUseCase updateCategoryUseCase)
         {
             try
             {
@@ -188,7 +189,7 @@ namespace ErpStudy.WebAPI.Controllers
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, Helper.MessageInfo.ErroTentarObterRecurso);
+                _logger.LogError(ex, Helper.MessageInfo.ErroTentarObterRecurso);
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
@@ -213,7 +214,7 @@ namespace ErpStudy.WebAPI.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> DeleteCategory(DeleteCategoryDTO id)
+        public async Task<IActionResult> DeleteCategory(DeleteCategoryDTO id, IDeleteCategoryUseCase deleteCategoryUseCase)
         {
             try
             {
@@ -235,7 +236,7 @@ namespace ErpStudy.WebAPI.Controllers
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, Helper.MessageInfo.ErroTentarObterRecurso);
+                _logger.LogError(ex, Helper.MessageInfo.ErroTentarObterRecurso);
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }

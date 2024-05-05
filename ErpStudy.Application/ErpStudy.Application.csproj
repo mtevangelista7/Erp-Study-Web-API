@@ -12,21 +12,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Remove="Commands\**" />
-      <Compile Remove="DTOs\CreateCatgeoryDTO.cs" />
-      <Compile Remove="DTOs\CreateCategoyDTO.cs" />
-      <Compile Remove="DTOs\CreateCategory.cs" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <EmbeddedResource Remove="Commands\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Remove="Commands\**" />
-    </ItemGroup>
-
-    <ItemGroup>
       <PackageReference Include="FluentResults" Version="3.15.2" />
       <PackageReference Include="FluentValidation" Version="11.9.1" />
     </ItemGroup>

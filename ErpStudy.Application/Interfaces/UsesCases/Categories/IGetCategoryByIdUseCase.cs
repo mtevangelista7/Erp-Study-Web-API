@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ErpStudy.Application.Interfaces.UsesCases
+namespace ErpStudy.Application.Interfaces.UsesCases.Categories
 {
-    internal interface IGetAllCategoriesUseCase : IUseCase<GetAllCategoriesDTO, List<Category>>
+    public interface IGetCategoryByIdUseCase : IUseCase<GetCategoryByIdDTO, Category>
     {
     }
 }

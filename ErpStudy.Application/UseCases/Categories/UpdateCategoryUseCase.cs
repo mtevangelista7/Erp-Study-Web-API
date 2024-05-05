@@ -1,6 +1,6 @@
 ﻿using ErpStudy.Application.DTOs;
 using ErpStudy.Application.DTOs.Categories;
-using ErpStudy.Application.Interfaces.UsesCases;
+using ErpStudy.Application.Interfaces.UsesCases.Categories;
 using ErpStudy.Application.Validator.CategoryDTOValidator;
 using ErpStudy.Domain.Entities;
 using ErpStudy.Infrastructure.Data.Interfaces;
@@ -9,11 +9,11 @@ using FluentValidation.Results;
 
 namespace ErpStudy.Application.UseCases.Categories
 {
-    public class UpdateCategoryDTOUseCase : IUpdateCategoryDTOUseCase
+    public class UpdateCategoryUseCase : IUpdateCategoryUseCase
     {
         private readonly ICategoryRepository _categoryRepository;
 
-        public UpdateCategoryDTOUseCase(ICategoryRepository categoryRepository)
+        public UpdateCategoryUseCase(ICategoryRepository categoryRepository)
         {
             _categoryRepository = categoryRepository;
         }

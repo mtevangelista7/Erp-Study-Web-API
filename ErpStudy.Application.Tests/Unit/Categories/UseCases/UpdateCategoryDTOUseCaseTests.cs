@@ -18,7 +18,7 @@ namespace ErpStudy.Application.Tests.Unit.Categories.UseCases
             mockRepository.Setup(repo => repo.GetById(It.IsAny<Guid>())).ReturnsAsync(category);
             mockRepository.Setup(repo => repo.Update(It.IsAny<Category>())).ReturnsAsync(category);
 
-            var useCase = new UpdateCategoryDTOUseCase(mockRepository.Object);
+            var useCase = new UpdateCategoryUseCase(mockRepository.Object);
 
             // Act
             var result = await useCase.ExecuteAsync(validRequest);
@@ -34,7 +34,7 @@ namespace ErpStudy.Application.Tests.Unit.Categories.UseCases
             var invalidRequest = new UpdateCategoryDTOBuilder().WithId(Guid.Empty).WithName("").Build();
             var mockRepository = new Mock<ICategoryRepository>();
 
-            var useCase = new UpdateCategoryDTOUseCase(mockRepository.Object);
+            var useCase = new UpdateCategoryUseCase(mockRepository.Object);
 
             // Act
             var result = await useCase.ExecuteAsync(invalidRequest);
@@ -53,7 +53,7 @@ namespace ErpStudy.Application.Tests.Unit.Categories.UseCases
             var mockRepository = new Mock<ICategoryRepository>();
             mockRepository.Setup(repo => repo.GetById(It.IsAny<Guid>())).ReturnsAsync((Category)null);
 
-            var useCase = new UpdateCategoryDTOUseCase(mockRepository.Object);
+            var useCase = new UpdateCategoryUseCase(mockRepository.Object);
 
             // Act
             var result = await useCase.ExecuteAsync(validRequest);

@@ -8,11 +8,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Compile Remove="Class1.cs" />
-      <Compile Remove="Validators\ProdutoValidator.cs" />
-    </ItemGroup>
-
-    <ItemGroup>
       <PackageReference Include="FluentValidation" Version="11.9.1" />
     </ItemGroup>
 

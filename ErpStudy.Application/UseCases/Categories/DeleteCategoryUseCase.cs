@@ -1,5 +1,5 @@
 ﻿using ErpStudy.Application.DTOs.Categories;
-using ErpStudy.Application.Interfaces.UsesCases;
+using ErpStudy.Application.Interfaces.UsesCases.Categories;
 using ErpStudy.Application.Validator.CategoryDTOValidator;
 using ErpStudy.Infrastructure.Data.Interfaces;
 using FluentResults;

@@ -1,5 +1,5 @@
 ﻿using ErpStudy.Application.DTOs.Categories;
-using ErpStudy.Application.Interfaces.UsesCases;
+using ErpStudy.Application.Interfaces.UsesCases.Categories;
 using ErpStudy.Application.UseCases.Categories;
 using ErpStudy.Application.Validator.CategoryDTOValidator;
 using ErpStudy.Domain.Entities;
@@ -19,21 +19,15 @@ namespace ErpStudy.WebAPI
         /// </summary>
         /// <param name="serviceCollection"></param>
         /// <returns></returns>
-        public static IServiceCollection AddCategoryUseCases(this IServiceCollection serviceCollection)
+        public static IServiceCollection AddCategoryServices(this IServiceCollection serviceCollection)
         {
-            serviceCollection.AddTransient<IUseCase<CreateCategoryDTO, Result<Category>>, CreateCategoryUseCase>();
-            serviceCollection.AddSingleton<CreateCategoryDTOValidator>();
-            return serviceCollection;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="serviceCollection"></param>
-        /// <returns></returns>
-        public static IServiceCollection AddRepositories(this IServiceCollection serviceCollection)
-        {
+            serviceCollection.AddScoped<ICreateCategoryUseCase, CreateCategoryUseCase>();
+            serviceCollection.AddScoped<IUpdateCategoryUseCase, UpdateCategoryUseCase>();
+            serviceCollection.AddScoped<IGetCategoryByIdUseCase, GetCategoryByIdUseCase>();
+            serviceCollection.AddScoped<IDeleteCategoryUseCase, DeleteCategoryUseCase>();
             serviceCollection.AddScoped<ICategoryRepository, CategoryRepository>();
+
+
             serviceCollection.AddScoped<IUserRepository, UserRepository>();
             serviceCollection.AddScoped<IProductRepository, ProductRepository>();
             return serviceCollection;

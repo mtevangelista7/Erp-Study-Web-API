@@ -10,6 +10,5 @@ namespace ErpStudy.Domain.Entities
         public Unity Unity { get; set; }
         public Condition Condition { get; set; }
         public Category Category { get; set; }
-        public Guid CategoryId { get; set; }
     }
 }

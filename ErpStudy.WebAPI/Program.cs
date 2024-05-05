@@ -1,10 +1,15 @@
+using ErpStudy.Infrastructure.Data.Context;
 using ErpStudy.WebAPI;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+var configuration = new ConfigurationBuilder()
+    .AddJsonFile("appsettings.json")
+    .Build();
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -59,9 +64,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     };
 });
 
-builder.Services.AddCategoryUseCases();
-builder.Services.AddRepositories();
-
+builder.Services.AddCategoryServices();
+builder.Services.AddDbContext<AplicationDbContext>(options =>
+        options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")),
+    ServiceLifetime.Scoped
+);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
