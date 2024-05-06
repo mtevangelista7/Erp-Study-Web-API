@@ -7,19 +7,18 @@ using FluentResults;
 
 namespace ErpStudy.Application.UseCases.Categories
 {
-    public class GetAllCategoriesUseCase : IGetAllCategoriesUseCase
+    public class GetAllCategoriesUseCase(ICategoryRepository categoryRepository) : IGetAllCategoriesUseCase
     {
-        private readonly ICategoryRepository _categoryRepository;
-
-        public GetAllCategoriesUseCase(ICategoryRepository categoryRepository)
+        public async Task<Result<List<Category>>> ExecuteAsync()
         {
-            _categoryRepository = categoryRepository;
-        }
-
-        // TODO: Procurar uma forma de melhorar isso, não faz sentido ter que passar null
-        public async Task<Result<List<Category>>> ExecuteAsync(GetAllCategoriesDTO? request = null)
-        {
-            return Result.Ok(await _categoryRepository.GetAll());
+            try
+            {
+                return Result.Ok(await categoryRepository.GetAll());
+            }
+            catch (Exception ex)
+            {
+                return Result.Fail([ex.Message]);
+            }
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using ErpStudy.Application.DTOs.Categories;
 using ErpStudy.Application.Interfaces.UsesCases.Categories;
+using ErpStudy.Application.Interfaces.UsesCases.Products;
 using ErpStudy.Application.UseCases.Categories;
+using ErpStudy.Application.UseCases.Products;
 using ErpStudy.Application.Validator.CategoryDTOValidator;
 using ErpStudy.Domain.Entities;
 using ErpStudy.Infrastructure.Data.Interfaces;
@@ -28,8 +30,19 @@ namespace ErpStudy.WebAPI
             serviceCollection.AddScoped<ICategoryRepository, CategoryRepository>();
 
 
+            // TODO: Colocar isso em outro método, ou alterar o nome desse
             serviceCollection.AddScoped<IUserRepository, UserRepository>();
+            return serviceCollection;
+        }
+
+        public static IServiceCollection AddProductsServices(this IServiceCollection serviceCollection)
+        {
+            serviceCollection.AddScoped<ICreateProductUseCase, CreateProductUseCase>();
+            serviceCollection.AddScoped<IUpdateProductUseCase, UpdateProductUseCase>();
+            serviceCollection.AddScoped<IGetProductByIdUseCase, GetProductByIdUseCase>();
+            serviceCollection.AddScoped<IDeleteProductUseCase, DeleteProductUseCase>();
             serviceCollection.AddScoped<IProductRepository, ProductRepository>();
+
             return serviceCollection;
         }
     }

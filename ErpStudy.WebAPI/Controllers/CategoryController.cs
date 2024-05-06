@@ -49,7 +49,6 @@ namespace ErpStudy.WebAPI.Controllers
         /// <response code="201">Categoria adicionada com sucesso.</response>
         /// <response code="400">Requisição inválida. Verifique os detalhes da solicitação.</response>
         /// <response code="500">Erro interno do servidor.</response>
-        [AllowAnonymous]
         [HttpPost("AddCategory")]
         [ProducesResponseType(typeof(CreateCategoryDTO), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -133,7 +132,7 @@ namespace ErpStudy.WebAPI.Controllers
         {
             try
             {
-                return Ok(await getAllCategoriesUseCase.ExecuteAsync(null!));
+                return Ok(await getAllCategoriesUseCase.ExecuteAsync());
             }
             catch (Exception ex)
             {

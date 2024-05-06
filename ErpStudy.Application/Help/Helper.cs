@@ -2,9 +2,6 @@
 {
     public abstract class Helper
     {
-        // TODO: Talvez seja melhor deixar isso em outro lugar ou mudar a forma de consulta
-        public static string StringConexao { get; set; }
-
         public abstract class MessageInfo
         {
             public const string RecursoNaoEncontrado = "O recurso especificado não foi encontrado";

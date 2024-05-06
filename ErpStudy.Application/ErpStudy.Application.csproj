@@ -16,4 +16,18 @@
       <PackageReference Include="FluentValidation" Version="11.9.1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Remove="DTOs\Products\GetAllProductsDTO.cs" />
+      <Compile Remove="UseCases\Categories\Products\**" />
+      <Compile Remove="DTOs\Categories\GetAllCategoriesDTO.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="UseCases\Categories\Products\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="UseCases\Categories\Products\**" />
+    </ItemGroup>
+
 </Project>

@@ -12,3 +12,8 @@ public interface IUseCase<TRequest>
 {
     public Task<Result> ExecuteAsync(TRequest request);
 }
+
+public interface IUseCaseWithNoParam<TResponse>
+{
+    public Task<Result<TResponse>> ExecuteAsync();
+}

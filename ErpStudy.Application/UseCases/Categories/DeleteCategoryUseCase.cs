@@ -17,11 +17,10 @@ namespace ErpStudy.Application.UseCases.Categories
 
                 if (!validationResult.IsValid)
                 {
-                    var err = validationResult.Errors.Select(e => e.ErrorMessage);
+                    IEnumerable<string> err = validationResult.Errors.Select(e => e.ErrorMessage);
                     return Result.Fail(err);
                 }
 
-                // chama o caso de para realizar a exlusão do categoria
                 await categoryRepository.Delete(request.Id);
 
                 return Result.Ok();

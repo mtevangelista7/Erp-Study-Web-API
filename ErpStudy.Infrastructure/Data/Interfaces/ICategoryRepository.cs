@@ -1,7 +1,8 @@
 ﻿using ErpStudy.Domain.Entities;
 
-namespace ErpStudy.Infrastructure.Data.Interfaces;
-
-public interface ICategoryRepository : IRepository<Category>
+namespace ErpStudy.Infrastructure.Data.Interfaces
 {
+    public interface ICategoryRepository : IRepository<Category>
+    {
+    }
 }

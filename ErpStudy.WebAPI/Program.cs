@@ -65,6 +65,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 });
 
 builder.Services.AddCategoryServices();
+builder.Services.AddProductsServices();
 builder.Services.AddDbContext<AplicationDbContext>(options =>
         options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")),
     ServiceLifetime.Scoped
