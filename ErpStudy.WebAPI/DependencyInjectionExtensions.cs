@@ -1,8 +1,12 @@
 ﻿using ErpStudy.Application.DTOs.Categories;
+using ErpStudy.Application.Interfaces.Services;
 using ErpStudy.Application.Interfaces.UsesCases.Categories;
 using ErpStudy.Application.Interfaces.UsesCases.Products;
+using ErpStudy.Application.Interfaces.UsesCases.Users;
+using ErpStudy.Application.Services;
 using ErpStudy.Application.UseCases.Categories;
 using ErpStudy.Application.UseCases.Products;
+using ErpStudy.Application.UseCases.Users;
 using ErpStudy.Application.Validator.CategoryDTOValidator;
 using ErpStudy.Domain.Entities;
 using ErpStudy.Infrastructure.Data.Interfaces;
@@ -43,6 +47,24 @@ namespace ErpStudy.WebAPI
             serviceCollection.AddScoped<IDeleteProductUseCase, DeleteProductUseCase>();
             serviceCollection.AddScoped<IProductRepository, ProductRepository>();
 
+            return serviceCollection;
+        }
+
+        public static IServiceCollection AddUserServices(this IServiceCollection serviceCollection)
+        {
+            serviceCollection.AddScoped<ICreateUserUseCase, CreateUserUseCase>();
+            serviceCollection.AddScoped<IUpdateUserUseCase, UpdateUserUseCase>();
+            serviceCollection.AddScoped<IGetUserByIdUseCase, GetUserByIdUseCase>();
+            serviceCollection.AddScoped<IDeleteUserUseCase, DeleteUserUseCase>();
+            serviceCollection.AddScoped<IUserRepository, UserRepository>();
+
+            return serviceCollection;
+        }
+
+        public static IServiceCollection AddAuthServices(this IServiceCollection serviceCollection)
+        {
+            serviceCollection.AddMemoryCache();
+            serviceCollection.AddScoped<IAuthenticationService, AuthenticationService>();
             return serviceCollection;
         }
     }

@@ -1,8 +1,6 @@
-﻿using ErpStudy.Application.DTOs.Products;
+﻿using ErpStudy.Application.DTOs.Users;
 using ErpStudy.Application.Help;
-using ErpStudy.Application.Interfaces.UsesCases.Categories;
-using ErpStudy.Application.Interfaces.UsesCases.Products;
-using ErpStudy.Domain.Entities;
+using ErpStudy.Application.Interfaces.UsesCases.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,22 +9,22 @@ namespace ErpStudy.WebAPI.Controllers
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductController(ILogger<ProductController> logger) : ControllerBase
+    public class UserController(ILogger<UserController> logger) : ControllerBase
     {
-        [HttpPost("AddProduct")]
-        public async Task<IActionResult> AddProduct(CreateProductDTO request,
-            ICreateProductUseCase createProductUseCase)
+        [HttpPost("AddUser")]
+        public async Task<IActionResult> AddUser(CreateUserDTO request,
+            ICreateUserUseCase createUserUseCase)
         {
             try
             {
-                var result = await createProductUseCase.ExecuteAsync(request);
+                var result = await createUserUseCase.ExecuteAsync(request);
 
                 if (result.IsFailed)
                 {
                     return BadRequest(result.Errors);
                 }
 
-                return Created(nameof(AddProduct), result.Value);
+                return Created(nameof(AddUser), result.Value);
             }
             catch (Exception ex)
             {
@@ -35,13 +33,13 @@ namespace ErpStudy.WebAPI.Controllers
             }
         }
 
-        [HttpGet("GetProductById={getProductByIdUseCase}")]
-        public async Task<IActionResult> GetProductById(GetProductByIdDTO request,
-            IGetProductByIdUseCase getProductByIdUseCase)
+        [HttpGet("GetProductById={getUserByIdUseCase}")]
+        public async Task<IActionResult> GetUserById(GetUserByIdDTO request,
+            IGetUserByIdUseCase getUserByIdUseCase)
         {
             try
             {
-                var result = await getProductByIdUseCase.ExecuteAsync(request);
+                var result = await getUserByIdUseCase.ExecuteAsync(request);
 
                 if (result.IsFailed)
                 {
@@ -62,12 +60,12 @@ namespace ErpStudy.WebAPI.Controllers
             }
         }
 
-        [HttpGet("GetAllProducts")]
-        public async Task<IActionResult> GetAllProducts(IGetAllProductsUseCase getAllProductsUseCase)
+        [HttpGet("GetAllUsers")]
+        public async Task<IActionResult> GetAllUsers(IGetAllUsersUseCase getAllUsersUseCase)
         {
             try
             {
-                var result = await getAllProductsUseCase.ExecuteAsync();
+                var result = await getAllUsersUseCase.ExecuteAsync();
 
                 if (result.IsFailed)
                 {
@@ -88,13 +86,13 @@ namespace ErpStudy.WebAPI.Controllers
             }
         }
 
-        [HttpPut("UpdateProduct")]
-        public async Task<IActionResult> UpdateProduct(UpdateProductDTO request,
-            IUpdateProductUseCase updateProductUseCase)
+        [HttpPut("UpdateUser")]
+        public async Task<IActionResult> UpdateUser(UpdateUserDTO request,
+            IUpdateUserUseCase updateUserUseCase)
         {
             try
             {
-                var result = await updateProductUseCase.ExecuteAsync(request);
+                var result = await updateUserUseCase.ExecuteAsync(request);
 
                 if (result.IsFailed)
                 {
@@ -115,13 +113,13 @@ namespace ErpStudy.WebAPI.Controllers
             }
         }
 
-        [HttpDelete("DeleteProduct")]
-        public async Task<IActionResult> DeleteProduct(DeleteProductDTO request,
-            IDeleteProductUseCase deleteProductUseCase)
+        [HttpDelete("DeleteUser")]
+        public async Task<IActionResult> DeleteUser(DeleteUserDTO request,
+            IDeleteUserUseCase deleteUserUseCase)
         {
             try
             {
-                var result = await deleteProductUseCase.ExecuteAsync(request);
+                var result = await deleteUserUseCase.ExecuteAsync(request);
 
                 if (result.IsFailed)
                 {

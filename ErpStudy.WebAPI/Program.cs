@@ -18,13 +18,12 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1",
         new OpenApiInfo { Title = "ErpStudyWebAPI", Version = "v1" });
-
-    // Aqui � onde definimos a documenta��o que permite ao usu�rio, enviar o token bearer para o endpoint 
+    
     c.AddSecurityDefinition("Bearer",
         new OpenApiSecurityScheme
         {
             In = ParameterLocation.Header,
-            Description = "Por favor, digite um token v�lido",
+            Description = "Valid token",
             Name = "Authorization",
             Type = SecuritySchemeType.ApiKey,
             BearerFormat = "JWT",
@@ -46,17 +45,14 @@ builder.Services.AddSwaggerGen(c =>
     c.IncludeXmlComments(filePath);
 });
 
-// Aqui definimos como ir� funcionar nossa autentica��o com o JWT
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
     options.RequireHttpsMetadata = false;
     options.SaveToken = false; // TODO verificar como isso funciona
 
-    // Setamos nossas op��es de valida��o do token
     options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuerSigningKey = true,
-        // Aqui definimos onde e como deve ser nossa chave de criptografia (igual ao m�todo que cria token)
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII
             .GetBytes(builder.Configuration.GetSection("AppSettings:Token").Value)),
         ValidateIssuer = false,
@@ -64,8 +60,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     };
 });
 
+builder.Services.AddAuthServices();
 builder.Services.AddCategoryServices();
 builder.Services.AddProductsServices();
+builder.Services.AddUserServices();
 builder.Services.AddDbContext<AplicationDbContext>(options =>
         options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")),
     ServiceLifetime.Scoped
