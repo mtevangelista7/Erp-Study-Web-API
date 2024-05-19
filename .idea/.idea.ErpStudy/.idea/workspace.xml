@@ -14,15 +14,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d11254e4-f51b-4f7b-b61c-444a47d5ba38" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/ErpStudy.Infrastructure/Data/Configurations/UserConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ErpStudy.Infrastructure/Data/Configurations/UserConfiguration.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ErpStudy.Infrastructure/Data/Repositories/UserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ErpStudy.Infrastructure/Data/Repositories/UserRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ErpStudy.Infrastructure/Migrations/AplicationDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ErpStudy.Infrastructure/Migrations/AplicationDbContextModelSnapshot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ErpStudy.WebAPI/Controllers/AuthController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ErpStudy.WebAPI/Controllers/AuthController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ErpStudy.WebAPI/Controllers/CategoryController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ErpStudy.WebAPI/Controllers/CategoryController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ErpStudy.WebAPI/Controllers/ProductController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ErpStudy.WebAPI/Controllers/ProductController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ErpStudy.WebAPI/Controllers/UserController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ErpStudy.WebAPI/Controllers/UserController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ErpStudy.WebAPI/DependencyInjectionExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ErpStudy.WebAPI/DependencyInjectionExtensions.cs" afterDir="false" />
+    <list default="true" id="d11254e4-f51b-4f7b-b61c-444a47d5ba38" name="Changes" comment="stufs">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ErpStudy/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ErpStudy/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +29,20 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "mtevangelista7"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/mtevangelista7/Erp-Study-Web-API.git",
+    "accountId": "dbd35eab-3733-4620-9f40-d1a8f5d4fe2b"
+  }
+}]]></component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock://F:/temp/ErpStudyWebAPI/ErpStudy.Infrastructure/Migrations/AplicationDbContextModelSnapshot.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://F:/temp/ErpStudyWebAPI/ErpStudy.Infrastructure/Migrations/AplicationDbContextModelSnapshot.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -201,8 +208,17 @@
       <updated>1714780186002</updated>
       <workItem from="1714780189741" duration="3197000" />
       <workItem from="1714885314053" duration="4874000" />
-      <workItem from="1716152180529" duration="694000" />
+      <workItem from="1716152180529" duration="1828000" />
     </task>
+    <task id="LOCAL-00001" summary="stufs">
+      <option name="closed" value="true" />
+      <created>1716153018043</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1716153018043</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -212,5 +228,7 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="stufs" />
+    <option name="LAST_COMMIT_MESSAGE" value="stufs" />
   </component>
 </project>
