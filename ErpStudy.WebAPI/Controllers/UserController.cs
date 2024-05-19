@@ -11,6 +11,7 @@ namespace ErpStudy.WebAPI.Controllers
     [ApiController]
     public class UserController(ILogger<UserController> logger) : ControllerBase
     {
+        [AllowAnonymous]
         [HttpPost("AddUser")]
         public async Task<IActionResult> AddUser(CreateUserDTO request,
             ICreateUserUseCase createUserUseCase)
@@ -33,7 +34,7 @@ namespace ErpStudy.WebAPI.Controllers
             }
         }
 
-        [HttpGet("GetProductById={getUserByIdUseCase}")]
+        [HttpGet("GetUserById={getUserByIdUseCase}")]
         public async Task<IActionResult> GetUserById(GetUserByIdDTO request,
             IGetUserByIdUseCase getUserByIdUseCase)
         {

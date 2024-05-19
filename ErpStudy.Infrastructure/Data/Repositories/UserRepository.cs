@@ -16,8 +16,7 @@ namespace ErpStudy.Infrastructure.Data.Repositories
 
         public async Task<User> GetByEmail(string email)
         {
-            return await _dbSet.FirstOrDefaultAsync(x => x.Email == email) ??
-                   throw new Exception("Entity not found");
+            return await _dbSet.FirstOrDefaultAsync(x => x.Email == email) ?? null;
         }
     }
 }

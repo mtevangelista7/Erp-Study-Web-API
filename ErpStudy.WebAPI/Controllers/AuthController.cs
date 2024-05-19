@@ -1,4 +1,5 @@
-﻿using ErpStudy.Application.DTOs.Users;
+﻿using ErpStudy.Application.DTOs.Auth;
+using ErpStudy.Application.DTOs.Users;
 using ErpStudy.Application.Help;
 using ErpStudy.Application.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -10,17 +11,17 @@ namespace ErpStudy.WebAPI.Controllers
     public class AuthController(ILogger<AuthController> logger) : ControllerBase
     {
         [HttpPost("GenerateToken")]
-        public async Task<IActionResult> GenerateToken(CreateUserDTO createUserDto,
+        public async Task<IActionResult> GenerateToken(GetTokenUser getTokenUser,
             IAuthenticationService authenticationService)
         {
             try
             {
                 string accessToken =
-                    await authenticationService.GenerateAccessToken(createUserDto.Email, createUserDto.Password);
+                    await authenticationService.GenerateAccessToken(getTokenUser.Email, getTokenUser.Password);
 
-                if (accessToken is null)
+                if (String.IsNullOrWhiteSpace(accessToken))
                 {
-                    return BadRequest();
+                    return NotFound();
                 }
 
                 return Ok(accessToken);

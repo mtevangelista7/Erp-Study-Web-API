@@ -32,27 +32,7 @@ namespace ErpStudy.WebAPI.Controllers
             _logger = logger;
         }
 
-        /// <summary>
-        /// Adiciona uma nova categoria ao sistema.
-        /// </summary>
-        /// <remarks>
-        /// Exemplo de requisição:
-        ///
-        ///     POST /api/category/AddCategory
-        ///     {
-        ///         "Name": "Nova Categoria"
-        ///     }
-        ///
-        /// </remarks>
-        /// <param name="category">Os dados da nova categoria a serem adicionados.</param>
-        /// <returns>O objeto da nova categoria adicionada.</returns>
-        /// <response code="201">Categoria adicionada com sucesso.</response>
-        /// <response code="400">Requisição inválida. Verifique os detalhes da solicitação.</response>
-        /// <response code="500">Erro interno do servidor.</response>
         [HttpPost("AddCategory")]
-        [ProducesResponseType(typeof(CreateCategoryDTO), StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> AddCategory([FromBody] CreateCategoryDTO category, ICreateCategoryUseCase createCategoryUseCase)
         {
             try
@@ -73,26 +53,7 @@ namespace ErpStudy.WebAPI.Controllers
             }
         }
 
-        /// <summary>
-        /// Retorna uma categoria existente no sistema com base no GUID fornecido.
-        /// </summary>
-        /// <remarks>
-        /// Exemplo de requisição:
-        /// 
-        ///     POST /GetCategoryById{guidCategoria}
-        /// 
-        /// </remarks>
-        /// <param name="id">O GUID da categoria a ser retornada.</param>
-        /// <returns>A categoria encontrada.</returns>
-        /// <response code="200">Categoria encontrada com sucesso.</response>
-        /// <response code="400">Requisição inválida. O GUID da categoria não foi fornecido corretamente.</response>
-        /// <response code="404">Recurso não encontrado. A categoria especificada não foi encontrada.</response>
-        /// <response code="500">Erro interno do servidor.</response>
         [HttpPost("GetCategoryById{id}")]
-        [ProducesResponseType(typeof(GetCategoryByIdDTO), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetCategoryById(GetCategoryByIdDTO id, IGetCategoryByIdUseCase getCategoryByIdUseCase)
         {
             try
@@ -113,22 +74,8 @@ namespace ErpStudy.WebAPI.Controllers
             }
         }
 
-        /// <summary>
-        /// Retorna todas as categorias existentes no sistema.
-        /// </summary>
-        /// <remarks>
-        /// Exemplo de requisição:
-        ///
-        ///     GET /GetAllCategories
-        ///
-        /// </remarks>
-        /// <returns>Uma lista de todas as categorias.</returns>
-        /// <response code="200">Lista de categorias retornada com sucesso.</response>
-        /// <response code="500">Erro interno do servidor.</response>
         [HttpGet("GetAllCategories")]
-        [ProducesResponseType(typeof(IEnumerable<Category>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetAllCategories(IGetAllCategoriesUseCase getAllCategoriesUseCase)
+        public async Task<ActionResult> GetAllCategories([FromServices] IGetAllCategoriesUseCase getAllCategoriesUseCase)
         {
             try
             {
@@ -141,31 +88,7 @@ namespace ErpStudy.WebAPI.Controllers
             }
         }
 
-        /// <summary>
-        /// Atualiza uma categoria existente no sistema.
-        /// </summary>
-        /// <remarks>
-        /// Exemplo de requisição:
-        ///
-        ///     PUT /updateCategory
-        ///     {
-        ///         "CategoriaID": "00000000-0000-0000-0000-000000000000",
-        ///         "Nome": "Categoria Atualizada",
-        ///         "Descricao": "Descrição da categoria atualizada."
-        ///     }
-        ///
-        /// </remarks>
-        /// <param name="category">Os novos dados da categoria a serem atualizados.</param>
-        /// <returns>A categoria atualizada.</returns>
-        /// <response code="200">Categoria atualizada com sucesso.</response>
-        /// <response code="400">Requisição inválida. Verifique os detalhes da solicitação.</response>
-        /// <response code="404">Recurso não encontrado. A categoria especificada não foi encontrada.</response>
-        /// <response code="500">Erro interno do servidor.</response>
         [HttpPut("UpdateCategory")]
-        [ProducesResponseType(typeof(Category), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> UpdateCategory([FromBody] UpdateCategoryDTO category, IUpdateCategoryUseCase updateCategoryUseCase)
         {
             try
@@ -193,26 +116,7 @@ namespace ErpStudy.WebAPI.Controllers
             }
         }
 
-        /// <summary>
-        /// Deleta uma categoria existente no sistema com base no GUID fornecido.
-        /// </summary>
-        /// <remarks>
-        /// Exemplo de requisição:
-        ///
-        ///     DELETE /DeletaCategoria?guidUsuario=00000000-0000-0000-0000-000000000000
-        ///
-        /// </remarks>
-        /// <param name="id">O GUID da categoria a ser deletada.</param>
-        /// <returns>Nenhum conteúdo.</returns>
-        /// <response code="204">Categoria deletada com sucesso.</response>
-        /// <response code="400">Requisição inválida. O GUID da categoria não foi fornecido corretamente.</response>
-        /// <response code="404">Recurso não encontrado. A categoria especificada não foi encontrada.</response>
-        /// <response code="500">Erro interno do servidor.</response>
         [HttpDelete("DeleteCategory{id}")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> DeleteCategory(DeleteCategoryDTO id, IDeleteCategoryUseCase deleteCategoryUseCase)
         {
             try

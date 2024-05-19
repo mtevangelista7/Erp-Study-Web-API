@@ -74,11 +74,6 @@ namespace ErpStudy.WebAPI.Controllers
                     return BadRequest(result.Errors);
                 }
 
-                if (result.Value is null || result.Value.Count == 0)
-                {
-                    return NotFound();
-                }
-
                 return Ok(result.Value);
             }
             catch (Exception ex)

@@ -17,6 +17,12 @@ namespace ErpStudy.Infrastructure.Data.Configurations
                 .IsRequired()
                 .HasMaxLength(250);
 
+            builder.Property(u => u.Email)
+                .HasColumnName("Email")
+                .HasColumnType("NVARCHAR(350)")
+                .IsRequired()
+                .HasMaxLength(350);
+
             builder.Property(c => c.PasswordHash)
                 .HasColumnName("PasswordHash")
                 .HasColumnType("VARBINARY(MAX)")

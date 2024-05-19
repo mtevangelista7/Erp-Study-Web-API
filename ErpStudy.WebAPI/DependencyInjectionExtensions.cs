@@ -30,6 +30,7 @@ namespace ErpStudy.WebAPI
             serviceCollection.AddScoped<ICreateCategoryUseCase, CreateCategoryUseCase>();
             serviceCollection.AddScoped<IUpdateCategoryUseCase, UpdateCategoryUseCase>();
             serviceCollection.AddScoped<IGetCategoryByIdUseCase, GetCategoryByIdUseCase>();
+            serviceCollection.AddScoped<IGetAllCategoriesUseCase, GetAllCategoriesUseCase>();
             serviceCollection.AddScoped<IDeleteCategoryUseCase, DeleteCategoryUseCase>();
             serviceCollection.AddScoped<ICategoryRepository, CategoryRepository>();
 
@@ -44,6 +45,7 @@ namespace ErpStudy.WebAPI
             serviceCollection.AddScoped<ICreateProductUseCase, CreateProductUseCase>();
             serviceCollection.AddScoped<IUpdateProductUseCase, UpdateProductUseCase>();
             serviceCollection.AddScoped<IGetProductByIdUseCase, GetProductByIdUseCase>();
+            serviceCollection.AddScoped<IGetAllProductsUseCase, GetAllProductsUseCase>();
             serviceCollection.AddScoped<IDeleteProductUseCase, DeleteProductUseCase>();
             serviceCollection.AddScoped<IProductRepository, ProductRepository>();
 
@@ -55,6 +57,7 @@ namespace ErpStudy.WebAPI
             serviceCollection.AddScoped<ICreateUserUseCase, CreateUserUseCase>();
             serviceCollection.AddScoped<IUpdateUserUseCase, UpdateUserUseCase>();
             serviceCollection.AddScoped<IGetUserByIdUseCase, GetUserByIdUseCase>();
+            serviceCollection.AddScoped<IGetAllUsersUseCase, GetAllUsersUseCase>();
             serviceCollection.AddScoped<IDeleteUserUseCase, DeleteUserUseCase>();
             serviceCollection.AddScoped<IUserRepository, UserRepository>();
 
