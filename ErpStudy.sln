@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34622.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{57D319D7-02D2-45D5-86A5-2410E5D08B0C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{388A4F30-F15D-4E6D-999E-77D6B073CC0A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErpStudy.Domain", "ErpStudy.Domain\ErpStudy.Domain.csproj", "{E0563ECA-4544-4F47-99A1-6B08E5A09CE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErpStudy.Application", "ErpStudy.Application\ErpStudy.Application.csproj", "{37F718D4-20B7-4E8B-BE78-91EFC91F6D7C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErpStudy.Infrastructure", "ErpStudy.Infrastructure\ErpStudy.Infrastructure.csproj", "{5FCB006D-E2F0-4B33-80D6-CBC7564AF73A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErpStudy.WebAPI", "ErpStudy.WebAPI\ErpStudy.WebAPI.csproj", "{E30AB13F-B988-44FA-80C4-BDFEB13D599A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{57D319D7-02D2-45D5-86A5-2410E5D08B0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57D319D7-02D2-45D5-86A5-2410E5D08B0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57D319D7-02D2-45D5-86A5-2410E5D08B0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57D319D7-02D2-45D5-86A5-2410E5D08B0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0563ECA-4544-4F47-99A1-6B08E5A09CE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0563ECA-4544-4F47-99A1-6B08E5A09CE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0563ECA-4544-4F47-99A1-6B08E5A09CE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0563ECA-4544-4F47-99A1-6B08E5A09CE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37F718D4-20B7-4E8B-BE78-91EFC91F6D7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37F718D4-20B7-4E8B-BE78-91EFC91F6D7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37F718D4-20B7-4E8B-BE78-91EFC91F6D7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37F718D4-20B7-4E8B-BE78-91EFC91F6D7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FCB006D-E2F0-4B33-80D6-CBC7564AF73A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FCB006D-E2F0-4B33-80D6-CBC7564AF73A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FCB006D-E2F0-4B33-80D6-CBC7564AF73A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FCB006D-E2F0-4B33-80D6-CBC7564AF73A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E30AB13F-B988-44FA-80C4-BDFEB13D599A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E30AB13F-B988-44FA-80C4-BDFEB13D599A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E30AB13F-B988-44FA-80C4-BDFEB13D599A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E30AB13F-B988-44FA-80C4-BDFEB13D599A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {62DF3DF4-BC56-47A0-8578-A47F384A877C}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E0563ECA-4544-4F47-99A1-6B08E5A09CE8} = {388A4F30-F15D-4E6D-999E-77D6B073CC0A}
+		{37F718D4-20B7-4E8B-BE78-91EFC91F6D7C} = {388A4F30-F15D-4E6D-999E-77D6B073CC0A}
+		{5FCB006D-E2F0-4B33-80D6-CBC7564AF73A} = {388A4F30-F15D-4E6D-999E-77D6B073CC0A}
+		{E30AB13F-B988-44FA-80C4-BDFEB13D599A} = {388A4F30-F15D-4E6D-999E-77D6B073CC0A}
+	EndGlobalSection
+EndGlobal
